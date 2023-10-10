@@ -3,18 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EbayformComponent } from './components/ebayform/ebayform.component';
-import { EbaydataComponent } from './components/ebaydata/ebaydata.component';
+import { EbayFormComponent } from './components/ebay-form/ebay-form.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    EbayformComponent,
-    EbaydataComponent
+    EbayFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

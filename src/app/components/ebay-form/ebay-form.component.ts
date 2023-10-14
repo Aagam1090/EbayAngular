@@ -19,12 +19,12 @@ export class EbayFormComponent {
 
   getData(form: NgForm): void {
     this.displayKeywordError = !this.validateKeyword(form.value.keyword);
-    this.displayLocationError = !this.validateLocation(form.value.CurrentLocation, form.value.zip);
+    this.displayLocationError = !this.validateLocation(form.value.location, form.value.zip);
     
     if(this.displayKeywordError || this.displayLocationError) {
         return;
     }
-    // if validations pass, perform your data submission logic here...
+    
     console.log('Form data submitted: ', form.value);
   }
   
@@ -32,12 +32,14 @@ export class EbayFormComponent {
     return Boolean(keyword) && keyword.trim() !== '';
   }
 
-  validateLocation(location: string, zip?: string): boolean {
-    if (location === 'Other' && (!zip || zip.trim() === '')) {
+  validateLocation(location: string, zip?:number|string): boolean {
+    if (location === 'Other' && (!zip || zip.toString().trim() === '')) {
       this.displayLocationError = true;
       return false;
     }
     this.displayLocationError = false;
+    console.log(location);
+    console.log(zip);
     return location === 'CurrentLocation' || location === 'Other';
   }
 

@@ -1,13 +1,13 @@
 <div class="form-container">
     <form #ebayForm="ngForm" (ngSubmit) = "getData(ebayForm)">
-        <div class="form-group row">
+        <div class="form-group row headline">
             <h3> Product Search </h3>
         </div>
         <div class="form-group row">
             <label for="keyword" class="col-sm-2 col-form-label">Keyword<span id="star">*</span></label>
             <div class="col-sm-10">
-                <input type="text" ngModel reqired name="keyword"  class="form-control" id="keyword" placeholder="Enter Product Name (eg.iPhone 8)">
-            <div *ngIf="displayFormError">
+                <input type="text" [(ngModel)]="keyword" reqired name="keyword"  class="form-control" id="keyword" placeholder="Enter Product Name (eg.iPhone 8)">
+            <div *ngIf="displayKeywordError">
                 <span>Please enter a keyword</span>
             </div>
         </div>
@@ -15,7 +15,7 @@
         <div class="form-group row">
             <label for="Category" class="col-sm-2 col-form-label">Category</label>
             <div class="col-sm-3">
-                <select class="form-control" ngModel="selectedCategory" name="Category" id="Category">
+                <select class="form-control" [(ngModel)]="selectedCategory" name="Category" id="Category">
                     <option value="All Categories">All Categories</option>
                     <option value="Art">Art</option>
                     <option value="Baby">Baby</option>
@@ -49,33 +49,33 @@
             <label for="Shipping" class="col-sm-2 col-form-label">Shipping Options</label>
             <div class="form-checkbox col-sm-10">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" ngModel name="pickupCheckbox"  type="checkbox" id="Local Pickup" value="Local Pickup">
+                    <input class="form-check-input" ngModel name="pickupCheckbox" type="checkbox" id="Local Pickup" value="Local Pickup">
                     <label class="form-check-label" for="Local Pickup">Local Pickup</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input"  ngModel name="shippingCheckbox" type="checkbox" id="Free Shipping" value="Free Shipping">
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" ngModel name="shippingCheckbox" type="checkbox" id="Free Shipping" value="Free Shipping">
                     <label class="form-check-label" for="Free Shipping">Free Shipping</label>
-                  </div>
+                </div>
             </div>
-        </div>
+        </div>        
         <div class="form-group row">
             <label for="distance" class="col-sm-2 col-form-label">Distance (Miles)</label>
             <div class="col-sm-3">
-              <input type="number" ngModel name="distance" class="form-control" id="distance" placeholder="10">
+              <input type="number" [(ngModel)] ="distance"  name="distance" class="form-control" id="distance" placeholder="10">
             </div>
         </div>
         <div class="form-group row">
             <label for="From" class="col-sm-2 col-form-label">From<span id="star">*</span></label>
             <div class="col-sm-5">
                 <div class="form-check">
-                    <input class="form-check-input" ngModel type="radio" name="CurrentLocation" id="CurrentLocation" value="CurrentLocation" checked>
+                    <input class="form-check-input" ngModel type="radio" name="location" id="CurrentLocation" value="CurrentLocation" checked>
                     <label class="form-check-label" for="Current Location">
                         'Current Location'
                     </label>
                     </div>
                 <div class="form-check">
-                    <input class="form-check-input" ngModel type="radio" name="Other" id="Other" value="Other">
-                    <label class="form-check-label" for="exampleRadios2">
+                    <input class="form-check-input" ngModel type="radio" name="location" id="Other" value="Other">
+                    <label class="form-check-label" for="Ohter">
                         Other. Please specify zip code:
                     </label>
                 </div>
@@ -85,16 +85,19 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-10">
                 <input type="number" ngModel name="zip" class="form-control" id="zip" placeholder="">
+                <div *ngIf="displayLocationError">
+                    <span>Please enter a zip code</span>
+                </div>
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-6 col-md-2">
-                <button type="submit" [disabled]="ebayForm.value.keyword == '' " class="btn btn-light">
+            <div class="col-6 col-md-2 buttonholder">
+                <button type="submit" [disabled]="!isValidKeyword" class="btn btn-light">
                     <i class="fas fa-search"></i> Search
                 </button>
             </div>
-            <div class="col-6 col-md-2">
-                <button type="button" class="btn btn-light" (click)= "ebayForm.resetForm(); this.displayFormError = false"> 
+            <div class="col-6 col-md-2 buttonholder">
+                <button type="button" class="btn btn-light" (click)= "resetForm(ebayForm)"> 
                     <i class="fas fa-bars"></i> Clear
                 </button>
             </div>

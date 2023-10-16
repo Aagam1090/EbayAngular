@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { EbayFormComponent } from './components/ebay-form/ebay-form.component';
 import { FormsModule } from '@angular/forms';
 import { ResultsComponent } from './components/results/results.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ResultsComponent } from './components/results/results.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -30,8 +30,8 @@ export class EbayFormComponent {
   getData(form: NgForm): void {
     this.displayKeywordError = !this.validateKeyword(form.value.keyword);
     this.displayLocationError = !this.validateLocation(form.value.location, form.value.zip);
-    console.log(this.displayKeywordError);
-    console.log(this.displayLocationError);
+    console.log('displayKeywordError:', this.displayKeywordError);
+    console.log('displayLocationError:', this.displayLocationError);    
     if(this.displayKeywordError || this.displayLocationError) {
         return;
     }
@@ -58,10 +58,11 @@ export class EbayFormComponent {
       });
     }
   }
-  
+
   fetchIpAddress(){
     return this.http.get('https://ipinfo.io/json?token=5fecd46b16293a');
   }
+
   fetchData(formValues: any){
     let params = new HttpParams();
     // Set all form values as query parameters
@@ -73,7 +74,6 @@ export class EbayFormComponent {
     console.log(this.apiUrl);
     console.log(params.toString());
     return this.http.get(this.apiUrl, { params });
-
   }
   
   validateKeyword(keyword: string): boolean {

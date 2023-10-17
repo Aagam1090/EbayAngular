@@ -13,17 +13,39 @@ export class EbayFormComponent {
   
   keyword:string = '';
   selectedCategory:string = "All Categories"
-  displayKeywordError = false;
-  displayLocationError = false;
   distance:number = 10;
   zip:any = "";
+  currentLocation = "CurrentLocation";
+  displayKeywordError = false;
+  displayLocationError = false;
+  submitEnable = false;
+  location = "CurrentLocation";
+
   apiUrl = 'http://localhost:3000/api/ebay';
   data = {};
   postalcode:string = "";
 
   constructor(private http: HttpClient) { }
 
-  get isValidKeyword(): boolean {
+  ngAfterContentChecked() { 
+    console.log(this.location);
+    if(this.keyword == "" || this.keyword == null || this.keyword == undefined || this.keyword.trim() == ""){
+      this.submitEnable = false;
+    }
+    if(this.location == "OtherLocation" && (this.zip == "" || this.zip == null || this.zip == undefined || this.zip.toString().trim() == "" || this.zip.toString().length != 5)){
+      this.submitEnable = false;
+    }
+    if(this.keyword != "" && this.keyword != null && this.keyword != undefined && this.keyword.trim() != ""){
+      if(this.location == "OtherLocation" && (this.zip == "" || this.zip == null || this.zip == undefined || this.zip.toString().trim() == "" || this.zip.toString().length != 5)){
+        this.submitEnable = false;
+      }
+      else{
+        this.submitEnable = true;
+      }
+    }
+  }
+
+  isValidKeyword(): boolean {
     return ( this.keyword!= null && this.keyword != '' );
   }
 
@@ -94,10 +116,12 @@ export class EbayFormComponent {
   resetForm(form: NgForm): void {
     form.resetForm();
     setTimeout(() => {
-      this.selectedCategory = "All Categories";
       this.distance = 10;
       this.displayKeywordError = false;
       this.displayLocationError = false;
+      this.submitEnable = false;
+      this.selectedCategory = "All Categories";
+      this.location = "CurrentLocation";
     });
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'app-results',
@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./results.component.css']
 })
 export class ResultsComponent {
+  @Input() item = {}; 
 
+  ngDoCheck() {
+    if(this.item != null && this.item != undefined && Object.keys(this.item).length != 0){
+      console.log('item from results:', this.item);
+    }
+  }
 }

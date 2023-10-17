@@ -72,9 +72,9 @@ input{
 }
 
 .errorMessage{
-    color: red;
+    color: rgba(255, 0, 0, 0.617);
 }
 
 .error-border {
-    border: 2px solid red;
+    border: 2px solid rgba(255, 0, 0, 0.569);
 }

@@ -28,7 +28,6 @@ export class EbayFormComponent {
   constructor(private http: HttpClient) { }
 
   ngAfterContentChecked() { 
-    console.log(this.location);
     if(this.keyword == "" || this.keyword == null || this.keyword == undefined || this.keyword.trim() == ""){
       this.submitEnable = false;
     }
@@ -42,6 +41,9 @@ export class EbayFormComponent {
       else{
         this.submitEnable = true;
       }
+    }
+    if(this.location == "OtherLocation" && (this.zip == "" || this.zip == null || this.zip == undefined || this.zip.toString().trim() == "" || this.zip.toString().length != 5) ){
+      this.displayLocationError=true;
     }
   }
 
@@ -60,23 +62,21 @@ export class EbayFormComponent {
     
     console.log('Form data submitted: ', form.value);
     if (form.value.location == 'CurrentLocation') {
-      console.log("Aagam Shah");
       this.fetchIpAddress().subscribe((response: any) => {
         const ipData = response as IpData;
         console.log('IP Data:', ipData);
         this.postalcode = ipData.postal;
         console.log('Postal Code:', this.postalcode);
         form.value.zip = this.postalcode;
-        // Move the fetchData call here after getting IP data
         this.fetchData(form.value).subscribe(response => {
           this.data = response;
-          console.log(this.data);
+          console.log('Ebay API Data',this.data);
         });
       });
     } else {
       this.fetchData(form.value).subscribe(response => {
         this.data = response;
-        console.log(this.data);
+        console.log('Ebay API Data',this.data);
       });
     }
   }
@@ -87,14 +87,13 @@ export class EbayFormComponent {
 
   fetchData(formValues: any){
     let params = new HttpParams();
-    // Set all form values as query parameters
+
     for (let key in formValues) {
       if (formValues.hasOwnProperty(key) && formValues[key] !== '') {
         params = params.set(key, formValues[key]);
       }
     }
-    console.log(this.apiUrl);
-    console.log(params.toString());
+    console.log('Form Values Passed as Params',params.toString());
     return this.http.get(this.apiUrl, { params });
   }
   
@@ -103,14 +102,12 @@ export class EbayFormComponent {
   }
 
   validateLocation(location: string, zip?:number|string): boolean {
-    if (location === 'Other' && (!zip || zip.toString().trim() === '')) {
+    if (location == 'OtherLocation' && (!zip || zip.toString().trim() === '')) {
       this.displayLocationError = true;
       return false;
     }
     this.displayLocationError = false;
-    console.log(location);
-    console.log(zip);
-    return location === 'CurrentLocation' || location === 'Other';
+    return location == 'CurrentLocation' || location == 'OtherLocation';
   }
 
   resetForm(form: NgForm): void {

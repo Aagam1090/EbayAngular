@@ -6,11 +6,30 @@ import { Component,Input } from '@angular/core';
   styleUrls: ['./results.component.css']
 })
 export class ResultsComponent {
-  @Input() item = {}; 
+  @Input() item :any = []; 
+  @Input() isDataLoaded :boolean = false;
 
-  ngDoCheck() {
-    if(this.item != null && this.item != undefined && Object.keys(this.item).length != 0){
-      console.log('item from results:', this.item);
-    }
+  ngAfterContentChecked(){
+    this.isEmptyObject(this.item);
   }
+
+  isEmptyObject(obj: any): boolean {
+    return Object.keys(obj).length === 0 && obj.constructor === Object && this.isDataLoaded;
+  }
+
+  getValue(item: any, key: string[]): string | number {
+    let current = item;
+    for (const k of key) {
+      if (!current[k]) return "N/A";
+      current = current[k];
+    }
+    return current;
+  }
+
+}
+
+interface Item {
+  url: string;
+  data: any; // You can make this more specific if you know the structure
+  totalEntries: number;
 }

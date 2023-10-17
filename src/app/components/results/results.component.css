@@ -10,3 +10,15 @@
     margin-left: 11%;
     width: 80%;
 }
+
+@media (max-width: 428px) { 
+    .result-table {
+        overflow-x: auto;
+    }
+    
+    .result-table .table {
+        width: 100%; 
+        min-width: 1000px; 
+        margin-bottom: 0;
+    }
+}

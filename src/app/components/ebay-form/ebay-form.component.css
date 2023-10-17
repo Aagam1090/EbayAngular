@@ -19,15 +19,31 @@
 
 @media screen and (min-width: 900px) {
     .form-group{
-        padding-top: 0.8%;
-        padding-left: 20%;
-        padding-right: 20%;
-        padding-bottom: 0.8%;
+        padding-top: 0.6%;
+        padding-left: 24%;
+        padding-right: 5%;
+        padding-bottom: 0.6%;
+      }
+      label{
+        padding-left: 0%;
+        padding-right: 0%;
       }
       h3{
         color: white;
         text-align: left;
         padding-top: 2%;
+        padding-left: 0px;
+        padding-bottom: 2%;
+    }
+    .buttonholder{
+        width: 15%;
+        padding: 0px;
+    }
+    button{
+        width: fit-content;
+    }
+    .category{
+        width: 76%;
     }
   }
 

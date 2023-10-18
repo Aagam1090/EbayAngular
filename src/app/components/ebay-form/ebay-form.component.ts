@@ -23,7 +23,7 @@ export class EbayFormComponent {
   location = "CurrentLocation";
   dataSubmitted = false;
   clearPressed = false;
-
+  filteredZipcodes:string[] = ["90007","20003","40005"];
   apiUrl = 'http://localhost:3000/api/ebay';
   ebayData = {};
   postalcode:string = "";

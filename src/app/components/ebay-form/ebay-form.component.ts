@@ -21,7 +21,8 @@ export class EbayFormComponent {
   displayLocationError = false;
   submitEnable = false;
   location = "CurrentLocation";
-  dataLoaded = false;
+  dataSubmitted = false;
+  clearPressed = false;
 
   apiUrl = 'http://localhost:3000/api/ebay';
   ebayData = {};
@@ -64,7 +65,7 @@ export class EbayFormComponent {
     
     console.log('Form data submitted: ', form.value);
     if (form.value.location == 'CurrentLocation') {
-      this.dataLoaded = true;
+      this.dataSubmitted = true;
       this.fetchIpAddress().subscribe((response: any) => {
         const ipData = response as IpData;
         console.log('IP Data:', ipData);
@@ -74,14 +75,14 @@ export class EbayFormComponent {
         this.fetchData(form.value).subscribe(response=> {
           this.ebayData = response;
           console.log('Ebay API Data',this.ebayData);
-          this.dataLoaded = false;
+          this.dataSubmitted = false;
         });
       });
     } else {
       this.fetchData(form.value).subscribe(response => {
         this.ebayData = response;
         console.log('Ebay API Data',this.ebayData);
-        this.dataLoaded = false;
+        this.dataSubmitted = false;
       });
     }
   }
@@ -124,6 +125,7 @@ export class EbayFormComponent {
       this.submitEnable = false;
       this.selectedCategory = "All Categories";
       this.location = "CurrentLocation";
+      this.ebayData = {};
     });
   }
 }

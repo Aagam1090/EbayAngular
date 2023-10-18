@@ -9,12 +9,17 @@ export class ResultsComponent {
   @Input() item :any = []; 
   @Input() isDataLoaded :boolean = false;
 
+  ngDoCheck(){
+    console.log('this.item:', this.item);
+    console.log('this.isDataLoaded:', this.isDataLoaded);
+  }
+
   ngAfterContentChecked(){
     this.isEmptyObject(this.item);
   }
 
   isEmptyObject(obj: any): boolean {
-    return Object.keys(obj).length === 0 && obj.constructor === Object && this.isDataLoaded;
+    return Object.keys(obj).length === 0 && obj.constructor === Object;
   }
 
   getValue(item: any, key: string[]): string | number {

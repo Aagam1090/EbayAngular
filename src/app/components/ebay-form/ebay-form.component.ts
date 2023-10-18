@@ -23,10 +23,13 @@ export class EbayFormComponent {
   location = "CurrentLocation";
   dataSubmitted = false;
   clearPressed = false;
-  filteredZipcodes:string[] = ["90007","20003","40005"];
+  filteredZipcodes:string[] = [];
   apiUrl = 'http://localhost:3000/api/ebay';
+  zipCodeUrl = 'http://localhost:3000/zip';
   ebayData = {};
   postalcode:string = "";
+  disableZipCode :boolean = true;
+  zipData: any[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -45,9 +48,44 @@ export class EbayFormComponent {
         this.submitEnable = true;
       }
     }
-    if(this.location == "OtherLocation" && (this.zip == "" || this.zip == null || this.zip == undefined || this.zip.toString().trim() == "" || this.zip.toString().length != 5) ){
+    if(this.location == "OtherLocation" && (this.zip == "" || this.zip == null || this.zip == undefined || this.zip.toString().trim() == "") ){
       this.displayLocationError=true;
     }
+    if(this.location == "OtherLocation" && (this.zip != "" && this.zip.length >0) ){
+      this.displayLocationError= false;
+    }
+    if(this.location == "CurrentLocation"){
+      this.displayLocationError = false;
+      this.zip="";
+      this.disableZipCode = true;
+    }
+    if(this.location == "OtherLocation"){
+      this.disableZipCode = false;
+    }
+  }
+
+
+  completeZipCode(event:any){
+    this.zip=  event.target.value;
+    if(this.zip && this.zip.length > 0){
+      this.filteredZipcodes = [];
+      this.fetchZipCode(this.zip).subscribe((response: any) => {
+        console.log(response);
+        if (response.hasOwnProperty('postalCodes') && Array.isArray(response.postalCodes)) {
+          this.zipData = response.postalCodes;
+          this.filteredZipcodes = this.zipData.map((item: any) => item.postalCode);
+        } else {
+          // Handle the case where postalCodes is not present or not an array, e.g., show an error message.
+          console.error('postalCodes property not found or not an array:', response);
+        }
+      });
+    }
+  }
+
+  fetchZipCode(zipCode : string){
+    let params = new HttpParams();
+    params = params.set('zip',this.zip);
+    return this.http.get(this.zipCodeUrl, { params });
   }
 
   isValidKeyword(): boolean {
@@ -57,8 +95,6 @@ export class EbayFormComponent {
   getData(form: NgForm): void {
     this.displayKeywordError = !this.validateKeyword(form.value.keyword);
     this.displayLocationError = !this.validateLocation(form.value.location, form.value.zip);
-    console.log('displayKeywordError:', this.displayKeywordError);
-    console.log('displayLocationError:', this.displayLocationError);    
     if(this.displayKeywordError || this.displayLocationError) {
         return;
     }
@@ -68,13 +104,10 @@ export class EbayFormComponent {
       this.dataSubmitted = true;
       this.fetchIpAddress().subscribe((response: any) => {
         const ipData = response as IpData;
-        console.log('IP Data:', ipData);
         this.postalcode = ipData.postal;
-        console.log('Postal Code:', this.postalcode);
         form.value.zip = this.postalcode;
         this.fetchData(form.value).subscribe(response=> {
           this.ebayData = response;
-          console.log('Ebay API Data',this.ebayData);
           this.dataSubmitted = false;
         });
       });

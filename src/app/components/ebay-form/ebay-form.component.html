@@ -85,7 +85,7 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-6">
                 <input type="number" [(ngModel)] = "zip" name="zip" [ngClass]="{'error-border': displayLocationError}"  class="form-control" matInput [matAutocomplete] ="auto" id="zip" 
-                placeholder="">
+                placeholder="" [disabled]="disableZipCode" (keyup) = "completeZipCode($event)">
                 <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let zipcode of filteredZipcodes" [value]="zipcode">
                       {{ zipcode }}

@@ -8,12 +8,7 @@ import { Component,Input } from '@angular/core';
 export class ResultsComponent {
   @Input() item :any = []; 
   @Input() isDataLoaded :boolean = false;
-
-  ngDoCheck(){
-    console.log('this.item:', this.item);
-    console.log('this.isDataLoaded:', this.isDataLoaded);
-  }
-
+  
   ngAfterContentChecked(){
     this.isEmptyObject(this.item);
   }

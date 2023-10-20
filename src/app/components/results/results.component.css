@@ -17,22 +17,47 @@
     margin-right: auto;
 }
 
-.limited-text {
-    white-space: nowrap;
-    width: 50px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.table {
+    width: 100%;     
+    table-layout: fixed; 
+}
+.title-column {
+   width: 40%;
+   white-space: nowrap; 
+   overflow: hidden;
+   text-overflow: ellipsis; 
+   padding-right: 15%;
+}
+
+.number-column{
+    text-align: center;
+    width: 4%;
+}
+
+.title-column{
+   width: 48%;
+   white-space: nowrap; 
+   overflow: hidden;
+   text-overflow: ellipsis; 
 }
 
 .btn-light{
-    width: 100%;
+    width: 69%;
+    height: 49px;
 }
 
 .tblImg{
-    width: 70%;
-    height: 70%;
+    width: 125px;
+    height: 125px;
+    padding-left: 2%;
     padding-bottom: 2%;
+    padding-right: 4%;
 }
+
+.image-header{
+    width: 150px;
+}
+
 @media (max-width: 428px) { 
     .result-table {
         overflow-x: auto;
@@ -43,4 +68,4 @@
         min-width: 1000px; 
         margin-bottom: 0;
     }
-}
+} 

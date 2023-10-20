@@ -9,13 +9,15 @@ import { ResultsComponent } from './components/results/results.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     EbayFormComponent,
-    ResultsComponent
+    ResultsComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,

@@ -26,25 +26,25 @@
     <table class="table table-dark table-striped" *ngIf="item.data && item.data.length">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Image</th>
-            <th scope="col" class="tbltitle">Title</th>
-            <th scope="col">Price</th>
-            <th scope="col">Shipping</th>
-            <th scope="col">Zip</th>
-            <th scope="col">Wishlist</th>
+            <th scope="col" class="number-column"><b>#</b></th>
+            <th scope="col" class="image-header"><b>Image</b></th>
+            <th scope="col" class="title-column"><b>Title</b></th>
+            <th scope="col"><b>Title</b></th>
+            <th scope="col"><b>Shipping</b></th>
+            <th scope="col"><b>Zip</b></th>
+            <th scope="col"><b>Wishlist</b></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let response of item.data; let i = index">
-            <th scope="row">{{ i + 1 }}</th>
-            <td><img  class="tblImg" [src]="getValue(response, ['galleryURL', '0'])" alt="Product Image"></td>
-            <td class="limited-text">{{getValue(response, ['title', '0'])}}</td>
+            <th scope="row" class="number-column">{{ i + 1 }}</th>
+            <td class="image-header"><img  class="tblImg" [src]="getValue(response, ['galleryURL', '0'])" alt="Product Image"></td>
+            <td class="title-column">{{getValue(response, ['title', '0'])}}</td>
             <td>${{getValue(response, ['sellingStatus', '0', 'currentPrice', '0', '__value__'])}}</td>
             <td>{{getValue(response, ['shippingInfo', '0', 'shippingType', '0'])}}</td>
             <td>{{getValue(response, ['postalCode', '0'])}}</td>
-            <td><button class="btn btn-light"><span>&#128722;</span> Wishlist</button></td>
+            <td><button class="btn btn-light" (click)="onRowButtonClick(response)"><i class="fa-sharp fa-regular fa-cart-plus fa-xl"></i></button></td>
           </tr>
-        </tbody>ß
+        </tbody>
       </table>
 </div> 

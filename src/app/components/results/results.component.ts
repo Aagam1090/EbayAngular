@@ -1,4 +1,6 @@
 import { Component,Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-results',
@@ -8,7 +10,11 @@ import { Component,Input } from '@angular/core';
 export class ResultsComponent {
   @Input() item :any = []; 
   @Input() isDataLoaded :boolean = false;
-  
+  selectedData: any;
+  apiUrl = 'http://localhost:3000/wishlist';
+
+  constructor(private http: HttpClient,private router: Router) { }
+
   ngAfterContentChecked(){
     this.isEmptyObject(this.item);
   }
@@ -26,6 +32,29 @@ export class ResultsComponent {
     return current;
   }
 
+  goToWishlist() {
+    this.router.navigate(['/wishlist']);
+  }
+
+  onRowButtonClick(data: any) {
+    this.selectedData = {
+      Image: this.getValue(data, ['galleryURL', '0']),
+      Title: this.getValue(data, ['title', '0']),
+      Price: this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']),
+      ShippingInfo: this.getValue(data, ['shippingInfo', '0', 'shippingType', '0']),
+      PostalCode: this.getValue(data, ['postalCode', '0']),
+      Url : this.getValue(data, ['viewItemURL', '0'])
+    };
+    console.log(this.selectedData);  // just for checking purposes
+    this.http.post(this.apiUrl, this.selectedData).subscribe(
+      response => {
+        console.log('Data sent successfully', response);
+      },
+      error => {
+        console.error('Error sending data', error);
+      }
+    );
+  }
 }
 
 interface Item {

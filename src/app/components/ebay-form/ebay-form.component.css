@@ -1,15 +1,14 @@
-
-.form-container{
-    background-color: rgb(34,37,41);
-    width: 85%;
-    height:50%;
-    margin-left: 7.5%;
-    margin-right: 7.5%;
-    margin-top:3%;
-    padding-bottom: 1%;
+.form-container {
+  background-color: rgb(34, 37, 41);
+  width: 85%;
+  height: 50%;
+  margin-left: 7.5%;
+  margin-right: 7.5%;
+  margin-top: 3%;
+  padding-bottom: 1%;
 }
 
-.form-group{
+.form-group {
   color: white;
   padding-top: 4%;
   padding-left: 7%;
@@ -17,64 +16,80 @@
   padding-bottom: 2%;
 }
 
+.container-fluid {
+  margin-top: 2%;
+}
+
+.active-btn {
+  background-color: black !important;
+  color: white !important;
+}
+
+.inactive-btn {
+  background-color: white !important;
+  color: black !important;
+}
+.disp-button{
+    padding-left: 0%;
+    padding-right: 0%;
+}
 @media screen and (min-width: 900px) {
-    .form-group{
-        padding-top: 0.6%;
-        padding-left: 24%;
-        padding-right: 5%;
-        padding-bottom: 0.6%;
-      }
-      label{
-        padding-left: 0%;
-        padding-right: 0%;
-      }
-      h3{
-        color: white;
-        text-align: left;
-        padding-top: 2%;
-        padding-left: 0px;
-        padding-bottom: 2%;
-    }
-    .buttonholder{
-        width: 15%;
-        padding: 0px;
-    }
-    button{
-        width: fit-content;
-    }
-    .category{
-        width: 76%;
-    }
+  .form-group {
+    padding-top: 0.6%;
+    padding-left: 24%;
+    padding-right: 5%;
+    padding-bottom: 0.6%;
   }
-
-
-h3{
+  label {
+    padding-left: 0%;
+    padding-right: 0%;
+  }
+  h3 {
     color: white;
     text-align: left;
     padding-top: 2%;
+    padding-left: 0px;
+    padding-bottom: 2%;
+  }
+  .buttonholder {
+    width: 15%;
+    padding: 0px;
+  }
+  button {
+    width: fit-content;
+  }
+  .category {
+    width: 76%;
+  }
 }
 
-#star{
-    color: red;
+h3 {
+  color: white;
+  text-align: left;
+  padding-top: 2%;
 }
 
-.form-checkbox{
-    margin-top: 5px;
+#star {
+  color: red;
 }
 
-button{
-    color:black;
-    min-width: 10%;
+.form-checkbox {
+  margin-top: 5px;
 }
 
-input{
-    color:black
+button {
+  color: black;
+  min-width: 10%;
 }
 
-.errorMessage{
-    color: rgba(255, 0, 0, 0.617);
+input {
+  color: black;
+}
+
+.errorMessage {
+  color: rgba(255, 0, 0, 0.617);
 }
 
 .error-border {
-    border: 2px solid rgba(255, 0, 0, 0.569);
+  border: 2px solid rgba(255, 0, 0, 0.569);
 }

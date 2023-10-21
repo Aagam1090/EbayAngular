@@ -30,6 +30,8 @@ export class EbayFormComponent {
   postalcode:string = "";
   disableZipCode :boolean = true;
   zipData: any[] = [];
+  isResultsActive: boolean = true;
+  submitClicked: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -100,6 +102,7 @@ export class EbayFormComponent {
     }
     
     console.log('Form data submitted: ', form.value);
+    this.submitClicked = true;
     if (form.value.location == 'CurrentLocation') {
       this.dataSubmitted = true;
       this.fetchIpAddress().subscribe((response: any) => {
@@ -161,6 +164,12 @@ export class EbayFormComponent {
       this.ebayData = {};
     });
   }
+
+
+  toggle(isResults: boolean) {
+    this.isResultsActive = isResults;
+  }
+
 }
 interface IpData {
   city: string;

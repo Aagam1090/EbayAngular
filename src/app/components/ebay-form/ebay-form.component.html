@@ -110,5 +110,20 @@
         </div>
       </form>
 </div>
+<br>
+<div class="container" *ngIf="submitClicked">
+    <div class="row justify-content-center">
+      <div class="col-auto disp-button">
+        <button 
+          id="resultsBtn" class="btn" [class.active-btn]="isResultsActive" [class.inactive-btn]="!isResultsActive" (click)="toggle(true)">Results</button>
+      </div>
+      <div class="col-auto disp-button">
+        <button 
+          id="wishListBtn" class="btn" [class.active-btn]="!isResultsActive" [class.inactive-btn]="isResultsActive" (click)="toggle(false)">Wish List</button>
+      </div>
+    </div>
+</div>
+
+<br>
 
 <app-results [item]= "ebayData" [isDataLoaded] = "dataSubmitted"></app-results>

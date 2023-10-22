@@ -43,15 +43,28 @@ export class ResultsComponent {
       Price: this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']),
       ShippingInfo: this.getValue(data, ['shippingInfo', '0', 'shippingType', '0']),
       PostalCode: this.getValue(data, ['postalCode', '0']),
-      Url : this.getValue(data, ['viewItemURL', '0'])
+      Url: this.getValue(data, ['viewItemURL', '0'])
     };
+  
     console.log(this.selectedData);  // just for checking purposes
-    this.http.post(this.apiUrl, this.selectedData).subscribe(
+  
+    // Construct the URL with the selectedData as query parameters
+    const params = new URLSearchParams();
+    for (const key in this.selectedData) {
+      if (this.selectedData.hasOwnProperty(key)) {
+        params.set(key, this.selectedData[key]);
+      }
+    }
+    
+    const fullApiUrl = `${this.apiUrl}?${params.toString()}`;
+  
+    // Using http.get instead of http.post
+    this.http.get(fullApiUrl).subscribe(
       response => {
-        console.log('Data sent successfully', response);
+        console.log('Data retrieved successfully', response);
       },
       error => {
-        console.error('Error sending data', error);
+        console.error('Error retrieving data', error);
       }
     );
   }

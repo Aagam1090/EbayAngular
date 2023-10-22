@@ -23,4 +23,20 @@ export class WishlistComponent {
   fetchWishListData(){
     return this.http.get('http://localhost:3000/wishlistdata');
   }
+
+  removeWishList(data:any){
+    console.log("Clikced Me");
+    console.log(data._id);
+    this.removeWishListData(data._id).subscribe((data: any) => {
+      console.log(data);
+      this.fetchWishListData().subscribe((data: any) => {
+        this.wishListData = data;
+        console.log(this.wishListData);
+      });
+    });
+  }
+
+  removeWishListData(id:any){
+    return this.http.delete('http://localhost:3000/wishlistdata/'+id);
+  }
 }

@@ -31,7 +31,11 @@
             <td>{{response.PostalCode}}</td>
             <td>
                 <button class="btn btn-light" (click)="removeWishList(response)">
-                    <i class="fa-sharp fa-regular fa-cart-plus fa-xl"></i>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <span class="material-symbols-outlined">
+                      remove_shopping_cart
+                    </span>
+                  </div>
                 </button>
             </td>
         </tr>        

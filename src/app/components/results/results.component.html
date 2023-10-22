@@ -32,7 +32,20 @@
             <td>${{getValue(response, ['sellingStatus', '0', 'currentPrice', '0', '__value__'])}}</td>
             <td>{{getValue(response, ['shippingInfo', '0', 'shippingType', '0'])}}</td>
             <td>{{getValue(response, ['postalCode', '0'])}}</td>
-            <td><button class="btn btn-light" (click)="onRowButtonClick(response)"><i class="fa-sharp fa-regular fa-cart-plus fa-xl"></i></button></td>
+            <td>
+              <button class="btn btn-light" (click)="onRowButtonClick(response)">
+                <div class="d-flex align-items-center justify-content-center">
+                  <span class="material-symbols-outlined" *ngIf="!response.inCart; else removeIcon">
+                    add_shopping_cart
+                  </span>
+                  <ng-template #removeIcon>
+                    <span class="material-symbols-outlined">
+                      remove_shopping_cart
+                    </span>
+                  </ng-template>
+                </div>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -12,6 +12,7 @@ export class ResultsComponent implements OnChanges {
   @Input() isDataLoaded: boolean = false;
   selectedData: any;
   apiUrl = 'http://localhost:3000/wishlist';
+  itemsInCart: any = {};
 
   // Pagination properties
   itemsPerPage: number = 10;
@@ -71,10 +72,10 @@ export class ResultsComponent implements OnChanges {
       PostalCode: this.getValue(data, ['postalCode', '0']),
       Url: this.getValue(data, ['viewItemURL', '0'])
     };
+    data.inCart = !data.inCart;
   
-    console.log(this.selectedData);  // just for checking purposes
+    console.log(this.selectedData);
   
-    // Construct the URL with the selectedData as query parameters
     const params = new URLSearchParams();
     for (const key in this.selectedData) {
       if (this.selectedData.hasOwnProperty(key)) {
@@ -83,8 +84,7 @@ export class ResultsComponent implements OnChanges {
     }
     
     const fullApiUrl = `${this.apiUrl}?${params.toString()}`;
-  
-    // Using http.get instead of http.post
+
     this.http.get(fullApiUrl).subscribe(
       response => {
         console.log('Data retrieved successfully', response);

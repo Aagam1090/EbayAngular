@@ -99,12 +99,18 @@
         <div class="form-group row">
             <div class="col-6 col-md-2 buttonholder">
                 <button type="submit" [disabled]="!submitEnable" class="btn btn-light">
-                    <i class="fas fa-search"></i> Search
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons">search</span> 
+                        <span>Search</span>
+                    </div>
                 </button>
             </div>
             <div class="col-6 col-md-2 buttonholder">
                 <button type="button" class="btn btn-light" (click)= "resetForm(ebayForm)"> 
-                    <i class="fas fa-bars"></i>   Clear
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons">clear_all</span> 
+                        <span>Clear</span>
+                    </div>
                 </button>
             </div>
         </div>

@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

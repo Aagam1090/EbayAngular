@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; 
 import { Router } from '@angular/router';
 
@@ -7,18 +7,44 @@ import { Router } from '@angular/router';
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css']
 })
-export class ResultsComponent {
-  @Input() item :any = []; 
-  @Input() isDataLoaded :boolean = false;
+export class ResultsComponent implements OnChanges {
+  @Input() item: any = []; 
+  @Input() isDataLoaded: boolean = false;
   selectedData: any;
   apiUrl = 'http://localhost:3000/wishlist';
 
-  constructor(private http: HttpClient,private router: Router) { }
+  // Pagination properties
+  itemsPerPage: number = 10;
+  currentPage: number = 1;
+  paginatedItems: any[] = [];
+  totalPages: number = 0; 
 
-  ngAfterContentChecked(){
-    this.isEmptyObject(this.item);
+  constructor(private http: HttpClient, private router: Router) { }
+
+  ngOnChanges(changes: SimpleChanges){
+    if(changes['item']){
+      this.paginatedItems = this.getPaginatedItems();
+      this.totalPages = this.getTotalPages(); // Calculate total pages when items change
+    }
+  }
+  getTotalPages(): number {
+    return Math.ceil(this.item.data.length / this.itemsPerPage);
   }
 
+  // Call this method in the template to get an array of page numbers
+  getPageNumbers(): number[] {
+    return Array(this.totalPages).fill(0).map((x, i) => i + 1);
+  }
+
+  getPaginatedItems(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.item.data.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.paginatedItems = this.getPaginatedItems();
+  }
   isEmptyObject(obj: any): boolean {
     return Object.keys(obj).length === 0 && obj.constructor === Object;
   }
@@ -68,10 +94,4 @@ export class ResultsComponent {
       }
     );
   }
-}
-
-interface Item {
-  url: string;
-  data: any; // You can make this more specific if you know the structure
-  totalEntries: number;
 }

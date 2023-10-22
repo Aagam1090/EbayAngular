@@ -1,1 +1,30 @@
-<p>wishlist works!</p>
+<div class="container result-table">
+    <table class="table table-dark table-striped" *ngIf="wishListData">
+        <thead>
+          <tr>
+            <th scope="col" class="number-column"><b>#</b></th>
+            <th scope="col" class="image-header"><b>Image</b></th>
+            <th scope="col" class="title-column"><b>Title</b></th>
+            <th scope="col"><b>Title</b></th>
+            <th scope="col"><b>Shipping</b></th>
+            <th scope="col"><b>Zip</b></th>
+            <th scope="col"><b>Wishlist</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let response of wishListData; let i = index">
+            <th scope="row" class="number-column">{{ i + 1 }}</th>
+            <td class="image-header"><img class="tblImg" [src]="response.Image" alt="Product Image"></td>
+            <td class="title-column">{{response.Title}}</td>
+            <td>${{response.Price}}</td>
+            <td>{{response.ShippingInfo}}</td>
+            <td>{{response.PostalCode}}</td>
+            <td>
+                <button class="btn btn-light">
+                    <i class="fa-sharp fa-regular fa-cart-plus fa-xl"></i>
+                </button>
+            </td>
+        </tr>        
+        </tbody>
+      </table>
+</div>

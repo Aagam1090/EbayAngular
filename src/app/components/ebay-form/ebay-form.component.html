@@ -126,4 +126,5 @@
 
 <br>
 
-<app-results [item]= "ebayData" [isDataLoaded] = "dataSubmitted"></app-results>
+<app-results [item]= "ebayData" [isDataLoaded] = "dataSubmitted" *ngIf="isResultsActive"></app-results>
+<app-wishlist [isWishlistClicked] = "!isResultsActive" *ngIf="!isResultsActive"></app-wishlist>

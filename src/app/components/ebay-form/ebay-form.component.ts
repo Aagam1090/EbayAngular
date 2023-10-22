@@ -103,6 +103,7 @@ export class EbayFormComponent {
     
     console.log('Form data submitted: ', form.value);
     this.submitClicked = true;
+    this.isResultsActive = true;
     if (form.value.location == 'CurrentLocation') {
       this.dataSubmitted = true;
       this.fetchIpAddress().subscribe((response: any) => {
@@ -162,6 +163,7 @@ export class EbayFormComponent {
       this.selectedCategory = "All Categories";
       this.location = "CurrentLocation";
       this.ebayData = {};
+      this.submitClicked = false;
     });
   }
 

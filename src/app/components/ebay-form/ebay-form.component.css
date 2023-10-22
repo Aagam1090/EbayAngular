@@ -29,10 +29,12 @@
   background-color: white !important;
   color: black !important;
 }
+
 .disp-button{
     padding-left: 0%;
     padding-right: 0%;
 }
+
 @media screen and (min-width: 900px) {
   .form-group {
     padding-top: 0.6%;

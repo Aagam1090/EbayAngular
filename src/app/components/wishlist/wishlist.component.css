@@ -43,6 +43,19 @@
     width: 150px;
 }
 
+.button-wrapper{
+    width: 8%;
+    display: flex;
+    float: right;
+    margin-right: 4%;
+    padding: 0px;
+    margin-bottom: 1%;
+}
+.button-wrapper button{
+    width: 70%;
+    height: 85%;
+}
+
 @media (max-width: 428px) { 
     .result-table {
         overflow-x: auto;
@@ -52,5 +65,17 @@
         width: 100%; 
         min-width: 1000px; 
         margin-bottom: 0;
+    }
+    .button-wrapper {
+        width: 28%; 
+        margin-right: 2%; 
+    }
+    .button-wrapper button {
+        width: 80%; 
+        height: 90%;
+    }
+    .nav-result{
+        margin-left: 12%;
+        width: 80%;
     }
 } 

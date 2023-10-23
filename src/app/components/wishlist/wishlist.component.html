@@ -7,7 +7,11 @@
       </div>
   </div>
 </div>
-<br>
+<div class="button-wrapper" *ngIf="wishListData && wishListData.length!=0">
+  <button type="button" class="btn btn-light">
+    Detail <span class="ml-2">&rsaquo;</span>
+  </button>
+</div>
 <div class="container result-table">
     <table class="table table-dark table-striped" *ngIf="wishListData && wishListData.length!=0">
         <thead>

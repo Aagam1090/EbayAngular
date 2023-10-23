@@ -23,11 +23,31 @@ export class ResultsComponent implements OnChanges {
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnChanges(changes: SimpleChanges){
-    if(changes['item'] && this.item.data && this.item.data.length > 0){
-      this.paginatedItems = this.getPaginatedItems();
-      this.totalPages = this.getTotalPages(); // Calculate total pages when items change
+    if(changes['item'] && this.item.data){
+      // Check for item data length, if it's 0 reset pagination
+      if(this.item.data.length === 0) {
+        this.paginatedItems = [];
+        this.totalPages = 0; // Reset total pages
+      } else {
+        this.totalPages = this.getTotalPages(); // Calculate total pages when items change
+        this.currentPage = 1; // Reset to first page when new data arrives
+        this.paginatedItems = this.getPaginatedItems();
+      }
+      console.log("Something Changed");
+      console.log(this.item);
+      console.log(this.paginatedItems);
+      console.log(this.totalPages);
+      console.log(this.currentPage);
     }
   }
+
+  getPaginatedItems(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    // Prevent slice from selecting out of bounds by using the array's length
+    const endIndex = Math.min(startIndex + this.itemsPerPage, this.item.data.length);
+    return this.item.data.slice(startIndex, endIndex);
+  }
+
   getTotalPages(): number {
     return Math.ceil(this.item.data.length / this.itemsPerPage);
   }
@@ -37,15 +57,12 @@ export class ResultsComponent implements OnChanges {
     return Array(this.totalPages).fill(0).map((x, i) => i + 1);
   }
 
-  getPaginatedItems(): any[] {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.item.data.slice(startIndex, startIndex + this.itemsPerPage);
-  }
-
   onPageChange(page: number): void {
+    if(page < 1 || page > this.totalPages) return; 
     this.currentPage = page;
     this.paginatedItems = this.getPaginatedItems();
   }
+
   isEmptyObject(obj: any): boolean {
     return Object.keys(obj).length === 0 && obj.constructor === Object;
   }

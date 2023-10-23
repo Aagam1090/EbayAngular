@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient, HttpParams } from '@angular/common/http'; 
 import { Router } from '@angular/router';
 
 @Component({
@@ -76,7 +76,6 @@ export class ResultsComponent implements OnChanges {
 
   getPaginatedItems(): any[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    // Prevent slice from selecting out of bounds by using the array's length
     const endIndex = Math.min(startIndex + this.itemsPerPage, this.item.data.length);
     return this.item.data.slice(startIndex, endIndex);
   }
@@ -85,7 +84,6 @@ export class ResultsComponent implements OnChanges {
     return Math.ceil(this.item.data.length / this.itemsPerPage);
   }
 
-  // Call this method in the template to get an array of page numbers
   getPageNumbers(): number[] {
     return Array(this.totalPages).fill(0).map((x, i) => i + 1);
   }
@@ -148,6 +146,23 @@ export class ResultsComponent implements OnChanges {
     }
     if(data.inWishlist == false){
       console.log("Removing item from wishlist");
+
+      const params = new HttpParams()
+        .set('Image', this.getValue(data, ['galleryURL', '0']))
+        .set('Title', this.getValue(data, ['title', '0']))
+        .set('Price', this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']))
+        .set('ShippingInfo', this.getValue(data, ['shippingInfo', '0', 'shippingType', '0']))
+        .set('PostalCode', this.getValue(data, ['postalCode', '0']))
+        .set('Url', this.getValue(data, ['viewItemURL', '0']));
+    
+      this.http.get('http://localhost:3000/deleteFromWishlist', { params, responseType: 'text'}).subscribe(
+        response => {
+          console.log('Item removed successfully', response);
+        },
+        error => {
+          console.error('Error removing item', error);
+        }
+      );
     }
   }
 }

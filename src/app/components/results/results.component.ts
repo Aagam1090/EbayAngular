@@ -23,7 +23,7 @@ export class ResultsComponent implements OnChanges {
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnChanges(changes: SimpleChanges){
-    if(changes['item']){
+    if(changes['item'] && this.item.data && this.item.data.length > 0){
       this.paginatedItems = this.getPaginatedItems();
       this.totalPages = this.getTotalPages(); // Calculate total pages when items change
     }
@@ -72,8 +72,9 @@ export class ResultsComponent implements OnChanges {
       PostalCode: this.getValue(data, ['postalCode', '0']),
       Url: this.getValue(data, ['viewItemURL', '0'])
     };
+
     data.inCart = !data.inCart;
-  
+    
     console.log(this.selectedData);
   
     const params = new URLSearchParams();

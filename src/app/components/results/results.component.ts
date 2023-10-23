@@ -13,6 +13,7 @@ export class ResultsComponent implements OnChanges {
   selectedData: any;
   apiUrl = 'http://localhost:3000/wishlist';
   itemsInCart: any = {};
+  wishlistItems: any[] = [];
 
   // Pagination properties
   itemsPerPage: number = 10;
@@ -24,13 +25,12 @@ export class ResultsComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges){
     if(changes['item'] && this.item.data){
-      // Check for item data length, if it's 0 reset pagination
       if(this.item.data.length === 0) {
         this.paginatedItems = [];
-        this.totalPages = 0; // Reset total pages
+        this.totalPages = 0; 
       } else {
-        this.totalPages = this.getTotalPages(); // Calculate total pages when items change
-        this.currentPage = 1; // Reset to first page when new data arrives
+        this.totalPages = this.getTotalPages(); 
+        this.currentPage = 1;
         this.paginatedItems = this.getPaginatedItems();
       }
       console.log("Something Changed");
@@ -38,7 +38,40 @@ export class ResultsComponent implements OnChanges {
       console.log(this.paginatedItems);
       console.log(this.totalPages);
       console.log(this.currentPage);
+      this.fetchWishlistItems();
     }
+  }
+
+  fetchWishlistItems() {
+    this.http.get('http://localhost:3000/wishlistdata').subscribe(
+      (data: any) => {
+        this.wishlistItems = data;
+        this.checkItemsInWishlist();
+        console.log(this.item);
+      },
+      error => {
+        console.error('Error retrieving wishlist items', error);
+      }
+    );
+  }
+
+  checkItemsInWishlist() {
+    this.paginatedItems.forEach(item => {
+      item.inWishlist = this.isItemInWishlist(item);
+    });
+  }
+
+  isItemInWishlist(item: any): boolean {
+    return this.wishlistItems.some(wishlistItem => {
+      return (
+        item.galleryURL[0] === wishlistItem.Image &&
+        item.title[0] === wishlistItem.Title &&
+        item.sellingStatus[0].currentPrice[0].__value__ === wishlistItem.Price &&
+        item.shippingInfo[0].shippingType[0] === wishlistItem.ShippingInfo &&
+        item.postalCode[0] === wishlistItem.PostalCode &&
+        item.viewItemURL[0] === wishlistItem.Url
+      );
+    });
   }
 
   getPaginatedItems(): any[] {
@@ -90,26 +123,31 @@ export class ResultsComponent implements OnChanges {
       Url: this.getValue(data, ['viewItemURL', '0'])
     };
 
-    data.inCart = !data.inCart;
+    data.inWishlist = !data.inWishlist;
     
-    console.log(this.selectedData);
+    if(data.inWishlist == true){
+      console.log(this.selectedData);
   
-    const params = new URLSearchParams();
-    for (const key in this.selectedData) {
-      if (this.selectedData.hasOwnProperty(key)) {
-        params.set(key, this.selectedData[key]);
+      const params = new URLSearchParams();
+      for (const key in this.selectedData) {
+        if (this.selectedData.hasOwnProperty(key)) {
+          params.set(key, this.selectedData[key]);
+        }
       }
+      
+      const fullApiUrl = `${this.apiUrl}?${params.toString()}`;
+  
+      this.http.get(fullApiUrl).subscribe(
+        response => {
+          console.log('Data retrieved successfully', response);
+        },
+        error => {
+          console.error('Error retrieving data', error);
+        }
+      );
     }
-    
-    const fullApiUrl = `${this.apiUrl}?${params.toString()}`;
-
-    this.http.get(fullApiUrl).subscribe(
-      response => {
-        console.log('Data retrieved successfully', response);
-      },
-      error => {
-        console.error('Error retrieving data', error);
-      }
-    );
+    if(data.inWishlist == false){
+      console.log("Removing item from wishlist");
+    }
   }
 }

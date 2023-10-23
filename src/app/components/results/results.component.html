@@ -39,14 +39,14 @@
             <td>
               <button class="btn btn-light" (click)="onRowButtonClick(response)">
                 <div class="d-flex align-items-center justify-content-center">
-                  <span class="material-symbols-outlined" *ngIf="!response.inCart; else removeIcon">
+                  <span class="material-symbols-outlined" *ngIf="!response.inWishlist">
                     add_shopping_cart
                   </span>
-                  <ng-template #removeIcon>
-                    <span class="material-symbols-outlined">
+                    <span class="material-symbols-outlined"
+                    [class.golden-icon]="response.inWishlist"
+                     *ngIf="response.inWishlist">
                       remove_shopping_cart
                     </span>
-                  </ng-template>
                 </div>
               </button>
             </td>

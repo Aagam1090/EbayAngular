@@ -72,6 +72,9 @@
     width: 70%;
     height: 85%;
 }
+.golden-icon {
+    color: goldenrod; 
+  }
 @media (max-width: 428px) { 
     .result-table {
         overflow-x: auto;

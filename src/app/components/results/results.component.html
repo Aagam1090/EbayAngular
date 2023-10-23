@@ -11,6 +11,11 @@
   </div>
 </div>
 <br>
+<div class="button-wrapper" *ngIf="paginatedItems.length">
+  <button type="button" class="btn btn-light">
+    Detail <span class="ml-2">&rsaquo;</span>
+  </button>
+</div>
 <div class="container result-table" *ngIf="paginatedItems.length">
     <table class="table table-dark table-striped" *ngIf="item.data && item.data.length">
         <thead>

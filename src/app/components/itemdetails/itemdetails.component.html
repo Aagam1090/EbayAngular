@@ -1,20 +1,28 @@
 <div class="container">
+    <div class="row text-center">
+        <p>{{this.singleItem.title}}</p>
+    </div>
     <div class="row align-items-center">
         <!-- List Button -->
         <div class="col-4">
-            <button class="btn btn-light">
+            <button class="btn btn-light" (click) ="backToResult()">
                 <i class="bi bi-arrow-left"></i> List
             </button>
         </div>
         <div class="col-8 d-flex justify-content-end align-items-center">
             <i class="fa-brands fa-square-facebook iconbox"></i>
-            <button class="btn btn-light">
+            <button class="btn btn-light" (click)="onRowButtonClick(singleItem)">
                 <div class="d-flex align-items-center justify-content-center">
-                    <span class="material-symbols-outlined shoppingcart iconbox shoppingcart">
-                        add_shopping_cart
+                  <span class="material-symbols-outlined" *ngIf="!singleItem.inWishlist">
+                    add_shopping_cart
+                  </span>
+                    <span class="material-symbols-outlined"
+                    [class.golden-icon]="singleItem.inWishlist"
+                     *ngIf="singleItem.inWishlist">
+                      remove_shopping_cart
                     </span>
                 </div>
-            </button>
+              </button>
         </div>
     </div>
     <div class="row">

@@ -10,8 +10,8 @@
       </div>
   </div>
 </div>
-<div class="button-wrapper"  *ngIf="paginatedItems.length && !detailedSelected">
-  <button type="button" class="btn btn-light">
+<div class="button-wrapper" *ngIf="paginatedItems.length && !detailedSelected">
+  <button type="button" class="btn btn-light" (click)="goToDetail()" [disabled]="detailedItem.length == 0">
     Detail <span class="ml-2">&rsaquo;</span>
   </button>
 </div>
@@ -67,4 +67,4 @@
     </li>
   </ul>
 </nav>
-<app-itemdetails *ngIf="detailedSelected" [singleItem] = "detailedItem"></app-itemdetails>
+<app-itemdetails *ngIf="detailedSelected" (updateView) = "changeVal($event)" [singleItem] = "detailedItem"></app-itemdetails>

@@ -44,6 +44,17 @@ export class ResultsComponent implements OnChanges {
     }
   }
 
+  changeVal(val:boolean){
+    console.log("Value changed");
+    this.detailedSelected = val;
+    console.log(this.detailedSelected);
+    console.log(this.paginatedItems);
+  }
+
+  goToDetail(){
+    this.detailedSelected = true;
+  }
+
   fetchWishlistItems() {
     this.http.get('http://localhost:3000/wishlistdata').subscribe(
       (data: any) => {

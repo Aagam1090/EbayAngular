@@ -1,5 +1,5 @@
 <div class="progress" *ngIf="isDataLoaded">
-  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
 </div>
 <div class="container"  *ngIf="item.data && item.data.length==0">
   <div class="row justify-content-left">
@@ -10,12 +10,12 @@
       </div>
   </div>
 </div>
-<div class="button-wrapper" *ngIf="paginatedItems.length">
+<div class="button-wrapper"  *ngIf="paginatedItems.length && !detailedSelected">
   <button type="button" class="btn btn-light">
     Detail <span class="ml-2">&rsaquo;</span>
   </button>
 </div>
-<div class="container result-table" *ngIf="paginatedItems.length">
+<div class="container result-table" *ngIf="paginatedItems.length && !detailedSelected">
     <table class="table table-dark table-striped" *ngIf="item.data && item.data.length">
         <thead>
           <tr>
@@ -32,7 +32,7 @@
           <tr *ngFor="let response of paginatedItems; let i = index">
             <th scope="row" class="number-column">{{ i + 1 }}</th>
             <td class="image-header"><img  class="tblImg" [src]="getValue(response, ['galleryURL', '0'])" alt="Product Image"></td>
-            <td class="title-column" [title]="getValue(response, ['title', '0'])" >{{getValue(response, ['title', '0'])}}</td>
+            <td class="title-column" [title]="getValue(response, ['title', '0'])" ><a href="#" (click) = "detail(response);$event.preventDefault()">{{getValue(response, ['title', '0'])}}</a></td>
             <td>${{getValue(response, ['sellingStatus', '0', 'currentPrice', '0', '__value__'])}}</td>
             <td>{{getValue(response, ['shippingInfo', '0', 'shippingType', '0'])}}</td>
             <td>{{getValue(response, ['postalCode', '0'])}}</td>
@@ -54,7 +54,7 @@
         </tbody>
       </table>
 </div> 
-<nav class="nav-result" aria-label="Page navigation" *ngIf="item.data && item.data.length > itemsPerPage">
+<nav class="nav-result" aria-label="Page navigation" *ngIf="item.data && item.data.length > itemsPerPage && !detailedSelected">
   <ul class="pagination">
     <li class="page-item" [class.disabled]="currentPage === 1">
       <a class="page-link" href="#" (click)="currentPage !== 1 && onPageChange(currentPage - 1); $event.preventDefault()" tabindex="-1">Previous</a>
@@ -67,3 +67,4 @@
     </li>
   </ul>
 </nav>
+<app-itemdetails [singleItem] = "detailedItem"></app-itemdetails>

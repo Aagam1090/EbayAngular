@@ -14,6 +14,8 @@ export class ResultsComponent implements OnChanges {
   apiUrl = 'http://localhost:3000/wishlist';
   itemsInCart: any = {};
   wishlistItems: any[] = [];
+  detailedItem:any = [];
+  detailedSelected : boolean = false;
 
   // Pagination properties
   itemsPerPage: number = 10;
@@ -164,5 +166,10 @@ export class ResultsComponent implements OnChanges {
         }
       );
     }
+  }
+  detail(response:any){
+    console.log('Data Clicked for details', response);
+    this.detailedItem = response;
+    this.detailedSelected = true;
   }
 }

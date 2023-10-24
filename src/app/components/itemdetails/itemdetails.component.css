@@ -1,0 +1,9 @@
+.fa-square-facebook{
+    color: #3b5998;
+    font-size: 3em;
+}
+@media (max-width: 428px) { 
+    .similar{
+        margin-left: 59%;
+    }
+}

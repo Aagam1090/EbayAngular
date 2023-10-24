@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row align-items-center">
+        <!-- List Button -->
+        <div class="col-4">
+            <button class="btn btn-light">
+                <i class="bi bi-arrow-left"></i> List
+            </button>
+        </div>
+        <div class="col-8 d-flex justify-content-end align-items-center">
+            <i class="fa-brands fa-square-facebook iconbox"></i>
+            <button class="btn btn-light">
+                <div class="d-flex align-items-center justify-content-center">
+                    <span class="material-symbols-outlined shoppingcart iconbox shoppingcart">
+                        add_shopping_cart
+                    </span>
+                </div>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7 col-sm-0"></div>
+        <div class="col-md-5 col-sm-12 float-right">
+                <button id="resultsBtn" class="btn" style="margin-left:13%" (click) ="renderContent('Product')">Product</button>
+                <button id="wishListBtn" class="btn" (click) ="renderContent('Photo')">Photo</button>
+                <button id="resultsBtn" class="btn" (click) ="renderContent('Shipping')">Shipping</button>
+                <button id="wishListBtn" class="btn" (click) ="renderContent('Seller')">Seller</button>
+                <button id="wishListBtn" class="btn similar" (click) ="renderContent('Similar')">Similar Products</button>
+        </div>
+        <hr>
+    </div>
+</div>
+<div class="container">
+    <app-product *ngIf="content === 'Product'"></app-product>
+    <app-photo *ngIf="content === 'Photo'" ></app-photo>
+    <app-shipping *ngIf="content === 'Shipping'"></app-shipping>
+    <app-seller *ngIf="content === 'Seller'"></app-seller>
+    <app-simproduct *ngIf="content === 'Similar'"></app-simproduct>
+</div>

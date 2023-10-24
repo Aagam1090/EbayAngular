@@ -11,6 +11,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ItemdetailsComponent } from './components/itemdetails/itemdetails.component';
+import { ProductComponent } from './components/product/product.component';
+import { PhotoComponent } from './components/photo/photo.component';
+import { ShippingComponent } from './components/shipping/shipping.component';
+import { SellerComponent } from './components/seller/seller.component';
+import { SimproductComponent } from './components/simproduct/simproduct.component';
 
 
 @NgModule({
@@ -18,7 +24,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AppComponent,
     EbayFormComponent,
     ResultsComponent,
-    WishlistComponent
+    WishlistComponent,
+    ItemdetailsComponent,
+    ProductComponent,
+    PhotoComponent,
+    ShippingComponent,
+    SellerComponent,
+    SimproductComponent
   ],
   imports: [
     BrowserModule,

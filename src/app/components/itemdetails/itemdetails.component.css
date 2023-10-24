@@ -2,6 +2,15 @@
     color: #3b5998;
     font-size: 3em;
 }
+.active-btn {
+    background-color: rgb(35,37,41) !important;
+    color: white !important;
+  }
+  
+  .inactive-btn {
+    background-color: white !important;
+    color: rgb(35,37,41) !important;
+  }
 @media (max-width: 428px) { 
     .similar{
         margin-left: 59%;

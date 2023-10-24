@@ -67,4 +67,4 @@
     </li>
   </ul>
 </nav>
-<app-itemdetails [singleItem] = "detailedItem"></app-itemdetails>
+<app-itemdetails *ngIf="detailedSelected" [singleItem] = "detailedItem"></app-itemdetails>

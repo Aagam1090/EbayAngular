@@ -20,19 +20,30 @@
     <div class="row">
         <div class="col-md-7 col-sm-0"></div>
         <div class="col-md-5 col-sm-12 float-right">
-                <button id="resultsBtn" class="btn" style="margin-left:13%" (click) ="renderContent('Product')">Product</button>
-                <button id="wishListBtn" class="btn" (click) ="renderContent('Photo')">Photo</button>
-                <button id="resultsBtn" class="btn" (click) ="renderContent('Shipping')">Shipping</button>
-                <button id="wishListBtn" class="btn" (click) ="renderContent('Seller')">Seller</button>
-                <button id="wishListBtn" class="btn similar" (click) ="renderContent('Similar')">Similar Products</button>
-        </div>
+            <button 
+            [ngClass]="{'active-btn': isActive('Product'), 'inactive-btn': !isActive('Product')}"
+            class="btn" style="margin-left:13%" 
+            (click)="renderContent('Product')">Product</button>
+          <button 
+            [ngClass]="{'active-btn': isActive('Photo'), 'inactive-btn': !isActive('Photo')}"
+            class="btn" (click)="renderContent('Photo')">Photo</button>
+          <button 
+            [ngClass]="{'active-btn': isActive('Shipping'), 'inactive-btn': !isActive('Shipping')}"
+            class="btn" (click)="renderContent('Shipping')">Shipping</button>
+          <button 
+            [ngClass]="{'active-btn': isActive('Seller'), 'inactive-btn': !isActive('Seller')}"
+            class="btn" (click)="renderContent('Seller')">Seller</button>
+          <button 
+            [ngClass]="{'active-btn': isActive('Similar'), 'inactive-btn': !isActive('Similar')}"
+            class="btn similar" (click)="renderContent('Similar')">Similar Products</button>
+            </div>
         <hr>
     </div>
 </div>
 <div class="container">
-    <app-product *ngIf="content === 'Product'"></app-product>
-    <app-photo *ngIf="content === 'Photo'" ></app-photo>
-    <app-shipping *ngIf="content === 'Shipping'"></app-shipping>
-    <app-seller *ngIf="content === 'Seller'"></app-seller>
-    <app-simproduct *ngIf="content === 'Similar'"></app-simproduct>
+    <app-product *ngIf="activeContent === 'Product'"></app-product>
+    <app-photo *ngIf="activeContent === 'Photo'" ></app-photo>
+    <app-shipping *ngIf="activeContent === 'Shipping'"></app-shipping>
+    <app-seller *ngIf="activeContent === 'Seller'"></app-seller>
+    <app-simproduct *ngIf="activeContent === 'Similar'"></app-simproduct>
 </div>

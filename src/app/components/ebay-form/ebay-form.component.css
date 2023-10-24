@@ -21,13 +21,13 @@
 }
 
 .active-btn {
-  background-color: black !important;
+  background-color: rgb(35,37,41) !important;
   color: white !important;
 }
 
 .inactive-btn {
   background-color: white !important;
-  color: black !important;
+  color: rgb(35,37,41) !important;
 }
 
 .disp-button{

@@ -10,7 +10,7 @@
       </div>
   </div>
 </div>
-<div class="button-wrapper" *ngIf="paginatedItems.length && !detailedSelected">
+<div class="button-wrapper" *ngIf="paginatedItems.length && !detailedSelected &&!clearPressed">
   <button type="button" class="btn btn-light" (click)="goToDetail()" [disabled]="detailedItem.length == 0">
     Detail <span class="ml-2">&rsaquo;</span>
   </button>
@@ -54,7 +54,7 @@
         </tbody>
       </table>
 </div> 
-<nav class="nav-result" aria-label="Page navigation" *ngIf="item.data && item.data.length > itemsPerPage && !detailedSelected">
+<nav class="nav-result" aria-label="Page navigation" *ngIf="item.data && item.data.length > itemsPerPage && !detailedSelected &&!clearPressed">
   <ul class="pagination">
     <li class="page-item" [class.disabled]="currentPage === 1">
       <a class="page-link" href="#" (click)="currentPage !== 1 && onPageChange(currentPage - 1); $event.preventDefault()" tabindex="-1">Previous</a>
@@ -67,4 +67,4 @@
     </li>
   </ul>
 </nav>
-<app-itemdetails *ngIf="detailedSelected" (updateView) = "changeVal($event)" [singleItem] = "detailedItem"></app-itemdetails>
+<app-itemdetails *ngIf="detailedSelected" [clearPressed]="clearPressed" (updateView) = "changeVal($event)" [singleItem] = "detailedItem"></app-itemdetails>

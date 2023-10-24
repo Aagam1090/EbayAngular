@@ -13,13 +13,22 @@ export class ItemdetailsComponent{
   selectedData: any;
   @Output() updateView = new EventEmitter<boolean>();
   apiUrl = 'http://localhost:3000/wishlist';
+  singleItemData: any;
+  @Input() clearPressed: boolean = false;
 
   constructor(private http: HttpClient){}
 
   ngOnChanges() {
     console.log('ItemDetails',this.singleItem);
+    this.fetchSingleItem(this.singleItem.itemId).subscribe(response => {
+      this.singleItemData = response;
+      console.log('singleItemData API Data',this.singleItemData);
+    });
   }
-
+  
+  fetchSingleItem(id:string){
+    return this.http.get('http://localhost:3000/singleItem?data='+id);
+  }
   backToResult(){
     console.log("Back to results Clikced");
     this.updateView.emit(false);

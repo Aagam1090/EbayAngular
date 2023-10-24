@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class ResultsComponent implements OnChanges {
   @Input() item: any = []; 
   @Input() isDataLoaded: boolean = false;
+  @Input() clearPressed: boolean = false;
   selectedData: any;
   apiUrl = 'http://localhost:3000/wishlist';
   itemsInCart: any = {};
@@ -27,6 +28,8 @@ export class ResultsComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges){
     if(changes['item'] && this.item.data){
+      this.detailedSelected = false;
+      this.detailedItem = [];
       if(this.item.data.length === 0) {
         this.paginatedItems = [];
         this.totalPages = 0; 
@@ -41,6 +44,10 @@ export class ResultsComponent implements OnChanges {
       console.log(this.totalPages);
       console.log(this.currentPage);
       this.fetchWishlistItems();
+    }
+    if(this.clearPressed == true){
+      this.detailedItem = [];
+      this.detailedSelected = false;
     }
   }
 

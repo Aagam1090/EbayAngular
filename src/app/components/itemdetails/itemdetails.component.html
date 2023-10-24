@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!clearPressed">
     <div class="row text-center">
         <p>{{this.singleItem.title}}</p>
     </div>
@@ -48,7 +48,7 @@
         <hr>
     </div>
 </div>
-<div class="container">
+<div class="container" *ngIf="!clearPressed">
     <app-product *ngIf="activeContent === 'Product'"></app-product>
     <app-photo *ngIf="activeContent === 'Photo'" ></app-photo>
     <app-shipping *ngIf="activeContent === 'Shipping'"></app-shipping>

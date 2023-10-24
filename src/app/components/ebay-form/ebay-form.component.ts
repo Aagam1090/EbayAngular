@@ -22,7 +22,7 @@ export class EbayFormComponent {
   submitEnable = false;
   location = "CurrentLocation";
   dataSubmitted = false;
-  clearPressed = false;
+  clearPressed :boolean = false;
   filteredZipcodes:string[] = [];
   apiUrl = 'http://localhost:3000/api/ebay';
   zipCodeUrl = 'http://localhost:3000/zip';
@@ -104,6 +104,7 @@ export class EbayFormComponent {
     console.log('Form data submitted: ', form.value);
     this.submitClicked = true;
     this.isResultsActive = true;
+    this.clearPressed = false;
     if (form.value.location == 'CurrentLocation') {
       this.dataSubmitted = true;
       this.fetchIpAddress().subscribe((response: any) => {
@@ -164,6 +165,7 @@ export class EbayFormComponent {
       this.location = "CurrentLocation";
       this.ebayData = {};
       this.submitClicked = false;
+      this.clearPressed=true;
     });
   }
 

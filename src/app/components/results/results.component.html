@@ -32,7 +32,7 @@
           <tr *ngFor="let response of paginatedItems; let i = index">
             <th scope="row" class="number-column">{{ i + 1 }}</th>
             <td class="image-header"><img  class="tblImg" [src]="getValue(response, ['galleryURL', '0'])" alt="Product Image"></td>
-            <td class="title-column">{{getValue(response, ['title', '0'])}}</td>
+            <td class="title-column" [title]="getValue(response, ['title', '0'])" >{{getValue(response, ['title', '0'])}}</td>
             <td>${{getValue(response, ['sellingStatus', '0', 'currentPrice', '0', '__value__'])}}</td>
             <td>{{getValue(response, ['shippingInfo', '0', 'shippingType', '0'])}}</td>
             <td>{{getValue(response, ['postalCode', '0'])}}</td>

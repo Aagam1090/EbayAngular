@@ -39,4 +39,8 @@ export class WishlistComponent {
   removeWishListData(id:any){
     return this.http.get('http://localhost:3000/wishlistdata/'+id);
   }
+
+  getTotalPrice(): number {
+    return this.wishListData.reduce((total, item) => total + parseFloat(item.Price), 0);
+  }
 }

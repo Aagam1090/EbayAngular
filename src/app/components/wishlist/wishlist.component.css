@@ -59,6 +59,10 @@
     color: goldenrod; 
   }
 
+.totalShopping{
+    text-align: right;
+  }
+
 @media (max-width: 428px) { 
     .result-table {
         overflow-x: auto;

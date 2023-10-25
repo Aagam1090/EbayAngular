@@ -1,1 +1,33 @@
-<p>shipping works!</p>
+<div class="container">
+    <table class="table table-striped table-dark" *ngIf="item">
+        <tbody>
+            <tr *ngIf="item.shippingInfo[0].shippingServiceCost">
+                <th scope="row">Shipping Cost</th>
+                <td>
+                  {{ getShippingCost() }}
+                </td>
+              </tr>
+          <tr *ngIf="item.shippingInfo[0].shipToLocation">
+            <th scope="row">Shipping Locations</th>
+            <td>{{ item.shippingInfo[0].shipToLocation }}</td>
+          </tr>
+          <tr *ngIf="item.shippingInfo[0].handlingTime">
+            <th scope="row">Handling Time</th>
+            <td>{{ item.shippingInfo[0].handlingTime }} Day</td>
+          </tr>
+          <tr *ngIf="item.shippingInfo[0].expeditedShipping !== undefined">
+            <th scope="row">Expedited Shipping</th>
+            <td [innerHTML]="getShippingIcon(item.shippingInfo[0].expeditedShipping)"></td>
+          </tr>
+          <tr *ngIf="item.shippingInfo[0].oneDayShippingAvailable !== undefined">
+            <th scope="row">One Day Shipping</th>
+            <td [innerHTML]="getShippingIcon(item.shippingInfo[0].oneDayShippingAvailable)"></td>
+          </tr>
+          <tr *ngIf="item.returnsAccepted !== undefined">
+            <th scope="row">Return Accepted</th>
+            <td [innerHTML]="getShippingIcon(item.returnsAccepted)"></td>
+          </tr>              
+        </tbody>
+      </table>
+      
+</div>

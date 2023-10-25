@@ -1,0 +1,9 @@
+.fa-check{
+    color: green !important;
+}
+.fa-xmark{
+    color: red !important;
+}
+th{
+    width: 65%;
+}

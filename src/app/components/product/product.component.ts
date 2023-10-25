@@ -6,5 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent {
-
+  @Input() productData: any;
+  
 }

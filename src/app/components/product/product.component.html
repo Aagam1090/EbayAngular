@@ -1,1 +1,34 @@
-<p>product works!</p>
+<div class="container">
+    <table class="table table-striped table-dark" *ngIf="productData">
+        <tbody>
+          <tr *ngIf="productData.PictureURL?.length">
+            <th scope="row">Product Images</th>
+            <td>
+              <a href="#">Show Images</a>
+            </td>
+          </tr> 
+          <tr *ngIf="productData.ConvertedCurrentPrice?.Value">
+            <th scope="row">Price</th>
+            <td >${{ productData.ConvertedCurrentPrice.Value}}</td>
+          </tr>
+          <tr *ngIf="productData.Location">
+            <th scope="row">Location</th>
+            <td >{{ productData.Location }}</td>
+          </tr>
+          <tr *ngIf="productData.ReturnPolicy">
+            <th scope="row">Return Policy (US)</th>
+            <td>
+                {{ productData.ReturnPolicy.ReturnsAccepted }}
+                {{ productData.ReturnPolicy.ReturnsAccepted !== 'ReturnsNotAccepted' ? 'within ' + productData.ReturnPolicy.ReturnsWithin : '' }}
+            </td>
+        </tr>
+        
+          <ng-container *ngIf="productData.ItemSpecifics?.NameValueList">
+            <tr *ngFor="let specific of productData.ItemSpecifics.NameValueList">
+              <th scope="row">{{ specific.Name }}</th>
+              <td >{{ specific.Value[0] }}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+    </table>
+</div>

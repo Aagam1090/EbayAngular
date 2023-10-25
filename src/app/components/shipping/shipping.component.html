@@ -17,7 +17,10 @@
           </tr>
           <tr *ngIf="item.shippingInfo[0].expeditedShipping !== undefined">
             <th scope="row">Expedited Shipping</th>
-            <td [innerHTML]="getShippingIcon(item.shippingInfo[0].expeditedShipping)"></td>
+            <td>
+                <i class="fa-solid" [ngClass]="item.shippingInfo[0].expeditedShipping ? 'fa-check' : 'fa-xmark'" 
+                    [style.color]="item.shippingInfo[0].expeditedShipping ? 'green' : 'red'"></i>
+            </td>
           </tr>
           <tr *ngIf="item.shippingInfo[0].oneDayShippingAvailable !== undefined">
             <th scope="row">One Day Shipping</th>
@@ -28,8 +31,11 @@
           </tr>
           <tr *ngIf="item.returnsAccepted !== undefined">
             <th scope="row">Return Accepted</th>
-            <td [innerHTML]="getShippingIcon(item.returnsAccepted)"></td>
-          </tr>              
+            <td>
+                <i class="fa-solid" [ngClass]="item.returnsAccepted ? 'fa-check' : 'fa-xmark'" 
+                    [style.color]="item.returnsAccepted ? 'green' : 'red'"></i>
+            </td>
+          </tr>         
         </tbody>
       </table>
 </div>

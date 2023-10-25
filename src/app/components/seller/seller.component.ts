@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./seller.component.css']
 })
 export class SellerComponent {
-
+  @Input() item:any;
 }

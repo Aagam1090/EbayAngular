@@ -1,1 +1,5 @@
-<p>photo works!</p>
+<div class="container">
+  <div class="item" *ngFor="let photo of photosData">
+    <img [src]="photo.link" class="img-fluid" alt="Responsive image" />
+  </div>
+</div>

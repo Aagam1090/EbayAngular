@@ -1,0 +1,14 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2%;
+}
+
+.item {
+  border: 1px solid black;
+  display: flex;
+}
+
+.item img {
+  max-width: 100%;
+}

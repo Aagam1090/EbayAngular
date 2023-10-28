@@ -16,8 +16,15 @@ export class PhotoComponent {
   ngOnChanges() {
     this.fetchPhotos(this.item.title).subscribe(response => {
       this.photosData = response;
-      console.log('singleItemData API Data',this.photosData);
-    });
+      console.log('PhotosData API Data',this.photosData);
+      this.loopImages();
+    }); 
+  }
+
+  loopImages(){
+    for(let i=0;i<this.photosData.length;i++){
+      console.log(this.photosData[i].link);
+    }
   }
 
   fetchPhotos(title:string){

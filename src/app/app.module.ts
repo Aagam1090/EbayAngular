@@ -17,7 +17,7 @@ import { PhotoComponent } from './components/photo/photo.component';
 import { ShippingComponent } from './components/shipping/shipping.component';
 import { SellerComponent } from './components/seller/seller.component';
 import { SimproductComponent } from './components/simproduct/simproduct.component';
-
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { SimproductComponent } from './components/simproduct/simproduct.componen
     HttpClientModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

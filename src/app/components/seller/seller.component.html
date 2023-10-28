@@ -16,8 +16,18 @@
             </tr>
             <tr *ngIf="item.Seller?.FeedbackRatingStar">
                 <th scope="row">Feedback Rating Star</th>
-                <td>{{ item.Seller.FeedbackRatingStar }}</td>
-            </tr>
+                <td>
+                  <div class="star-container">
+                    <ng-container *ngIf="item.Seller.FeedbackScore >= 10000; else starBorder">
+                      <mat-icon [style.color]="getStarColor(item.Seller.FeedbackRatingStar)">star</mat-icon>
+                    </ng-container>
+                    <ng-template #starBorder>
+                      <mat-icon [style.color]="getStarColor(item.Seller.FeedbackRatingStar)">star_border</mat-icon>
+                    </ng-template>
+                  </div>
+                  {{ item.Seller.FeedbackRatingStar }}
+                </td>
+              </tr>                           
             <tr *ngIf="item.Seller?.TopRatedSeller !== undefined">
                 <th scope="row">Top Rated</th>
                 <td>

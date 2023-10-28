@@ -50,7 +50,7 @@
 </div>
 <div class="container" *ngIf="!clearPressed">
     <app-product [productData]= "singleItemData" *ngIf="activeContent === 'Product'"></app-product>
-    <app-photo *ngIf="activeContent === 'Photo'" ></app-photo>
+    <app-photo [item]="singleItem" *ngIf="activeContent === 'Photo'" ></app-photo>
     <app-shipping [item]="singleItem" *ngIf="activeContent === 'Shipping'"></app-shipping>
     <app-seller [item]="singleItemData" *ngIf="activeContent === 'Seller'"></app-seller>
     <app-simproduct *ngIf="activeContent === 'Similar'"></app-simproduct>

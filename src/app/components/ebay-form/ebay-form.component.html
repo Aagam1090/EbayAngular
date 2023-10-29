@@ -6,7 +6,7 @@
         <div class="form-group row">
             <label for="keyword" class="col-sm-2 col-form-label">Keyword<span id="star">*</span></label>
             <div class="col-sm-6">
-                <input type="text" [(ngModel)]="keyword" reqired name="keyword" [ngClass]="{'error-border': displayKeywordError}" class="form-control" id="keyword" placeholder="Enter Product Name (eg.iPhone 8)">
+                <input type="text" required  #keywordField="ngModel" [(ngModel)]="keyword" reqired name="keyword" [ngClass]="{'error-border': displayKeywordError}" class="form-control" id="keyword" placeholder="Enter Product Name (eg.iPhone 8)">
             <div *ngIf="displayKeywordError">
                 <span class="errorMessage">Please enter a keyword</span>
             </div>

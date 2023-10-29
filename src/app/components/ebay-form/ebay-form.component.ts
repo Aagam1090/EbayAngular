@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { NgForm, NgModel } from '@angular/forms';
 
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   templateUrl: './ebay-form.component.html',
   styleUrls: ['./ebay-form.component.css']
 })
-export class EbayFormComponent {
+export class EbayFormComponent{
   
   keyword:string = '';
   selectedCategory:string = "All Categories"
@@ -32,8 +32,18 @@ export class EbayFormComponent {
   zipData: any[] = [];
   isResultsActive: boolean = true;
   submitClicked: boolean = false;
+  @ViewChild('keywordField') keywordField!: NgModel;
 
   constructor(private http: HttpClient) { }
+
+  ngDoCheck() {
+    if (this.keywordField) {
+      console.log(this.keywordField.touched);
+      if(this.keywordField.touched && this.keyword == ""){
+        this.displayKeywordError = !this.validateKeyword(this.keyword);
+      }
+    }
+  }
 
   ngAfterContentChecked() { 
     if(this.keyword == "" || this.keyword == null || this.keyword == undefined || this.keyword.trim() == ""){

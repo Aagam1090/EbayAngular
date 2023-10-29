@@ -1,1 +1,7 @@
-<p>simproduct works!</p>
+<div class="container" *ngIf="similarProducts && similarProducts.length == 0">
+  <div class="row justify-content-left">
+    <div class="col-12 col-md-12">
+      <div class="alert alert-warning text-left" role="alert">No Records.</div>
+    </div>
+  </div>
+</div>

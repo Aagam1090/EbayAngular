@@ -67,6 +67,8 @@ export class WishlistComponent  implements OnChanges {
   detail(response: any) {
     const respData: any = [];
     console.log('Data Clicked for details', response);
+    
+    respData.inWishlist = true;
     respData.itemId = [];
     respData.itemId.push(response.Id); 
     respData.title = response.Title;

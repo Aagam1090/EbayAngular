@@ -20,7 +20,7 @@
             <th scope="col" class="image-header"><b>Image</b></th>
             <th scope="col" class="title-column"><b>Title</b></th>
             <th scope="col"><b>Title</b></th>
-            <th scope="col"><b>Shipping</b></th>
+            <th scope="col" class="shipping"><b>Shipping</b></th>
             <th scope="col"><b>Zip</b></th>
             <th scope="col"><b>Wishlist</b></th>
           </tr>
@@ -31,7 +31,7 @@
             <td class="image-header"><img class="tblImg" [src]="response.Image" alt="Product Image"></td>
             <td class="title-column">{{response.Title}}</td>
             <td>${{response.Price}}</td>
-            <td>{{response.ShippingInfo}}</td>
+            <td class="shipping">{{response.ShippingInfo}}</td>
             <td>{{response.PostalCode}}</td>
             <td>
                 <button class="btn btn-light" (click)="removeWishList(response)">

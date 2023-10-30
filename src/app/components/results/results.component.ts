@@ -82,12 +82,15 @@ export class ResultsComponent implements OnChanges {
   }
 
   isItemInWishlist(item: any): boolean {
+    const price = this.getValue(item, ['sellingStatus', '0', 'currentPrice', '0', '__value__']);
+    const formattedPrice = (parseFloat(price.toString()).toFixed(2)).toString();
+
     return this.wishlistItems.some(wishlistItem => {
       return (
         item.galleryURL[0] === wishlistItem.Image &&
         item.title[0] === wishlistItem.Title &&
-        item.sellingStatus[0].currentPrice[0].__value__ === wishlistItem.Price &&
-        item.shippingInfo[0].shippingType[0] === wishlistItem.ShippingInfo &&
+        formattedPrice === wishlistItem.Price &&
+        this.getShippingCost(item) === wishlistItem.ShippingInfo &&
         item.postalCode[0] === wishlistItem.PostalCode &&
         item.viewItemURL[0] === wishlistItem.Url
       );
@@ -144,11 +147,14 @@ export class ResultsComponent implements OnChanges {
   }
 
   onRowButtonClick(data: any) {
+    const price = this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']);
+    const formattedPrice = (parseFloat(price.toString()).toFixed(2)).toString();
+
     this.selectedData = {
       Image: this.getValue(data, ['galleryURL', '0']),
       Title: this.getValue(data, ['title', '0']),
-      Price: this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']),
-      ShippingInfo: this.getValue(data, ['shippingInfo', '0', 'shippingType', '0']),
+      Price: formattedPrice,
+      ShippingInfo: this.getShippingCost(data),
       PostalCode: this.getValue(data, ['postalCode', '0']),
       Url: this.getValue(data, ['viewItemURL', '0'])
     };
@@ -178,12 +184,13 @@ export class ResultsComponent implements OnChanges {
     }
     if(data.inWishlist == false){
       console.log("Removing item from wishlist");
-
+      const price = this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']);
+      const formattedPrice = (parseFloat(price.toString()).toFixed(2)).toString();
       const params = new HttpParams()
         .set('Image', this.getValue(data, ['galleryURL', '0']))
         .set('Title', this.getValue(data, ['title', '0']))
-        .set('Price', this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']))
-        .set('ShippingInfo', this.getValue(data, ['shippingInfo', '0', 'shippingType', '0']))
+        .set('Price', price)
+        .set('ShippingInfo', this.getShippingCost(data))
         .set('PostalCode', this.getValue(data, ['postalCode', '0']))
         .set('Url', this.getValue(data, ['viewItemURL', '0']));
     

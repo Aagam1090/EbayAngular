@@ -63,6 +63,11 @@
     text-align: right;
   }
 
+  .shipping{
+    padding-left:0;
+    padding-right: 0;
+}
+
 @media (max-width: 428px) { 
     .result-table {
         overflow-x: auto;

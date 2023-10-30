@@ -82,17 +82,9 @@ export class ResultsComponent implements OnChanges {
   }
 
   isItemInWishlist(item: any): boolean {
-    const price = this.getValue(item, ['sellingStatus', '0', 'currentPrice', '0', '__value__']);
-    const formattedPrice = (parseFloat(price.toString()).toFixed(2)).toString();
-
     return this.wishlistItems.some(wishlistItem => {
       return (
-        item.galleryURL[0] === wishlistItem.Image &&
-        item.title[0] === wishlistItem.Title &&
-        formattedPrice === wishlistItem.Price &&
-        this.getShippingCost(item) === wishlistItem.ShippingInfo &&
-        item.postalCode[0] === wishlistItem.PostalCode &&
-        item.viewItemURL[0] === wishlistItem.Url
+        item.itemId[0] === wishlistItem.Id
       );
     });
   }
@@ -165,14 +157,22 @@ export class ResultsComponent implements OnChanges {
   onRowButtonClick(data: any) {
     const price = this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']);
     const formattedPrice = (parseFloat(price.toString()).toFixed(2)).toString();
-
+    console.log('Data Clicked', data);
     this.selectedData = {
+      Id : this.getValue(data, ['itemId', '0']),
       Image: this.getValue(data, ['galleryURL', '0']),
       Title: this.getValue(data, ['title', '0']),
       Price: formattedPrice,
       ShippingInfo: this.getShippingCost(data),
       PostalCode: this.getValue(data, ['postalCode', '0']),
-      Url: this.getValue(data, ['viewItemURL', '0'])
+      Url: this.getValue(data, ['viewItemURL', '0']),  
+      ShippingServiceCost: this.getValue(data, ['shippingInfo', '0', 'shippingServiceCost', '0', '__value__']),
+      ShippingType: this.getValue(data, ['shippingInfo', '0', 'shippingType', '0']),
+      ShipToLocations: this.getValue(data, ['shippingInfo', '0', 'shipToLocations', '0']),
+      ExpeditedShipping: this.getValue(data, ['shippingInfo', '0', 'expeditedShipping', '0']),
+      OneDayShippingAvailable: this.getValue(data, ['shippingInfo', '0', 'oneDayShippingAvailable', '0']),
+      ReturnsAccepted: this.getValue(data, ['shippingInfo', '0', 'returnsAccepted', '0']),
+      HandlingTime: this.getValue(data, ['shippingInfo', '0', 'handlingTime', '0'])
     };
 
     data.inWishlist = !data.inWishlist;
@@ -203,6 +203,7 @@ export class ResultsComponent implements OnChanges {
       const price = this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']);
       const formattedPrice = (parseFloat(price.toString()).toFixed(2)).toString();
       const params = new HttpParams()
+        .set('Id', this.getValue(data, ['itemId', '0']))
         .set('Image', this.getValue(data, ['galleryURL', '0']))
         .set('Title', this.getValue(data, ['title', '0']))
         .set('Price', price)

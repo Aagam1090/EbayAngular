@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-wishlist',
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.css']
 })
-export class WishlistComponent {
+export class WishlistComponent  implements OnChanges {
 
   @Input() isWishlistClicked: boolean = false;
   @Input() clearPressed: boolean = false;
@@ -17,11 +17,15 @@ export class WishlistComponent {
 
   constructor(private http: HttpClient) { }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges) {
     this.fetchWishListData().subscribe((data: any) => {
       this.wishListData = data;
       console.log(this.wishListData);
     });
+    if(this.clearPressed == true){
+      this.detailedItem = [];
+      this.detailedSelected = false;
+    }
   }
 
   fetchWishListData(){
@@ -60,11 +64,24 @@ export class WishlistComponent {
     return this.http.get('http://localhost:3000/wishlistdata/'+id);
   }
 
-  detail(response:any){
+  detail(response: any) {
+    const respData: any = [];
     console.log('Data Clicked for details', response);
-    this.detailedItem = response;
+    respData.itemId = [];
+    respData.itemId.push(response.Id); 
+    respData.title = response.Title;
+    respData.shippingInfo = [];
+    respData.shippingInfo.push({
+      shippingServiceCost: response.ShippingInfoData.ShippingCost,
+      expeditedShipping: response.ShippingInfoData.ExpeditedShipping,
+      oneDayShippingAvailable: response.ShippingInfoData.OneDayShippingAvailable,
+      returnsAccepted: response.ShippingInfoData.ReturnsAccepted,
+      handlingTime: response.ShippingInfoData.HandlingTime,
+    }); 
+    this.detailedItem = respData;
     this.detailedSelected = true;
   }
+  
 
   getTotalPrice(): number {
     let total = 0;

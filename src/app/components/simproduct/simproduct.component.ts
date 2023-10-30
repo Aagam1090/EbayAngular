@@ -13,6 +13,7 @@ export class SimproductComponent {
   constructor(private http: HttpClient) { }
 
   ngOnChanges(){
+    console.log('Similar Products Component',this.product);
     this.fetchSimilarProducts(this.product.itemId[0]).subscribe(response => {
       this.similarProducts = response;
       console.log('Similar Products API Data',this.similarProducts);

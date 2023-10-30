@@ -10,6 +10,10 @@ import { CommonModule } from '@angular/common';
 export class ShippingComponent {
   @Input() item: any;
 
+  ngOnChanges(){
+    console.log('Shipping Component',this.item);
+  }
+
   getShippingCost(){
     if(this.item.shippingInfo[0].shippingServiceCost[0].__value__ == 0){
       return 'Free Shipping'

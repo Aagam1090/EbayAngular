@@ -23,7 +23,7 @@
             <th scope="col" class="image-header"><b>Image</b></th>
             <th scope="col" class="title-column"><b>Title</b></th>
             <th scope="col"><b>Title</b></th>
-            <th scope="col"><b>Shipping</b></th>
+            <th scope="col" class="shipping"><b>Shipping</b></th>
             <th scope="col"><b>Zip</b></th>
             <th scope="col"><b>Wishlist</b></th>
           </tr>
@@ -34,7 +34,7 @@
             <td class="image-header"><img  class="tblImg" [src]="getValue(response, ['galleryURL', '0'])" alt="Product Image"></td>
             <td class="title-column" [title]="getValue(response, ['title', '0'])" ><a href="#" (click) = "detail(response);$event.preventDefault()">{{getValue(response, ['title', '0'])}}</a></td>
             <td>${{getValue(response, ['sellingStatus', '0', 'currentPrice', '0', '__value__'])}}</td>
-            <td>{{getValue(response, ['shippingInfo', '0', 'shippingType', '0'])}}</td>
+            <td class="shipping">{{getShippingCost(response)}}</td>
             <td>{{getValue(response, ['postalCode', '0'])}}</td>
             <td>
               <button class="btn btn-light" (click)="onRowButtonClick(response)">

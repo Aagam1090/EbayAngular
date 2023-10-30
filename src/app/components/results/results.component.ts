@@ -131,6 +131,18 @@ export class ResultsComponent implements OnChanges {
     this.router.navigate(['/wishlist']);
   }
 
+  getShippingCost(item: any): string {
+    if (item && item.shippingInfo && item.shippingInfo[0] && item.shippingInfo[0].shippingServiceCost) {
+      const shippingCost = item.shippingInfo[0].shippingServiceCost[0].__value__;
+      if (shippingCost === "0.0") {
+        return "Free Shipping";
+      } else if (shippingCost) {
+        return `$${parseFloat(shippingCost).toFixed(2)}`;
+      }
+    }
+    return "N/A";
+  }
+
   onRowButtonClick(data: any) {
     this.selectedData = {
       Image: this.getValue(data, ['galleryURL', '0']),

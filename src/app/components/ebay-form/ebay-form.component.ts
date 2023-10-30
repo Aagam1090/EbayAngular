@@ -42,6 +42,9 @@ export class EbayFormComponent{
       if(this.keywordField.touched && this.keyword == ""){
         this.displayKeywordError = !this.validateKeyword(this.keyword);
       }
+      else{
+        this.displayKeywordError = false;
+      }
     }
   }
 

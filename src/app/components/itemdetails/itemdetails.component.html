@@ -1,6 +1,6 @@
-<div class="container" *ngIf="!clearPressed">
+<div class="container" *ngIf="!clearPressed && this.singleItemData">
     <div class="row text-center">
-        <p>{{this.singleItem.title}}</p>
+        <p>{{this.singleItemData.Title}}</p>
     </div>
     <div class="row align-items-center">
         <!-- List Button -->
@@ -10,7 +10,7 @@
             </button>
         </div>
         <div class="col-8 d-flex justify-content-end align-items-center">
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{this.singleItem.viewItemURL}}&quote=Buy {{this.singleItem.title}} at {{this.singleItem.currentPrice}} from link below" target="_blank"><i class="fa-brands fa-square-facebook iconbox"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{this.singleItemData.ViewItemURLForNaturalSearch}}&quote=Buy {{this.singleItemData.title}} at {{this.singleItemData.ConvertedCurrentPrice.Value}} from link below" target="_blank"><i class="fa-brands fa-square-facebook iconbox"></i></a>
             <button class="btn btn-light" (click)="onRowButtonClick(singleItem)">
                 <div class="d-flex align-items-center justify-content-center">
                   <span class="material-symbols-outlined" *ngIf="!singleItem.inWishlist">
@@ -50,8 +50,8 @@
 </div>
 <div class="container" *ngIf="!clearPressed">
     <app-product [productData]= "singleItemData" *ngIf="activeContent === 'Product'"></app-product>
-    <app-photo [item]="singleItem" *ngIf="activeContent === 'Photo'" ></app-photo>
+    <app-photo [item]="singleItemData" *ngIf="activeContent === 'Photo'" ></app-photo>
     <app-shipping [item]="singleItem" *ngIf="activeContent === 'Shipping'"></app-shipping>
     <app-seller [item]="singleItemData" *ngIf="activeContent === 'Seller'"></app-seller>
-    <app-simproduct [product]="singleItem" *ngIf="activeContent === 'Similar'"></app-simproduct>
+    <app-simproduct [product]="singleItemData" *ngIf="activeContent === 'Similar'"></app-simproduct>
 </div>

@@ -32,6 +32,12 @@ export class WishlistComponent  implements OnChanges {
     return this.http.get('http://localhost:3000/wishlistdata');
   }
 
+  fetchApiData(id:any){
+    const url = 'http://localhost:3000/ebayApiWish?id='+id;
+    console.log(url);
+    return this.http.get(url);
+  }
+
   removeWishList(data:any){
     console.log("Clikced Me");
     console.log(data._id);
@@ -65,23 +71,11 @@ export class WishlistComponent  implements OnChanges {
   }
 
   detail(response: any) {
-    const respData: any = [];
-    console.log('Data Clicked for details', response);
-    
-    respData.inWishlist = true;
-    respData.itemId = [];
-    respData.itemId.push(response.Id); 
-    respData.title = response.Title;
-    respData.shippingInfo = [];
-    respData.shippingInfo.push({
-      shippingServiceCost: response.ShippingInfoData.ShippingCost,
-      expeditedShipping: response.ShippingInfoData.ExpeditedShipping,
-      oneDayShippingAvailable: response.ShippingInfoData.OneDayShippingAvailable,
-      returnsAccepted: response.ShippingInfoData.ReturnsAccepted,
-      handlingTime: response.ShippingInfoData.HandlingTime,
-    }); 
-    this.detailedItem = respData;
-    this.detailedSelected = true;
+    console.log(response.Id);
+    this.fetchApiData(response.Id).subscribe((data: any) => {
+      this.detailedItem = data.data[0];
+      this.detailedSelected = true;
+    });
   }
   
 

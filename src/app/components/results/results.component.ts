@@ -165,14 +165,7 @@ export class ResultsComponent implements OnChanges {
       Price: formattedPrice,
       ShippingInfo: this.getShippingCost(data),
       PostalCode: this.getValue(data, ['postalCode', '0']),
-      Url: this.getValue(data, ['viewItemURL', '0']),  
-      ShippingServiceCost: this.getValue(data, ['shippingInfo', '0', 'shippingServiceCost', '0', '__value__']),
-      ShippingType: this.getValue(data, ['shippingInfo', '0', 'shippingType', '0']),
-      ShipToLocations: this.getValue(data, ['shippingInfo', '0', 'shipToLocations', '0']),
-      ExpeditedShipping: this.getValue(data, ['shippingInfo', '0', 'expeditedShipping', '0']),
-      OneDayShippingAvailable: this.getValue(data, ['shippingInfo', '0', 'oneDayShippingAvailable', '0']),
-      ReturnsAccepted: this.getValue(data, ['shippingInfo', '0', 'returnsAccepted', '0']),
-      HandlingTime: this.getValue(data, ['shippingInfo', '0', 'handlingTime', '0'])
+      Url: this.getValue(data, ['viewItemURL', '0'])
     };
 
     data.inWishlist = !data.inWishlist;

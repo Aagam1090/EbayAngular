@@ -14,7 +14,7 @@ export class PhotoComponent {
   constructor(private http: HttpClient) { }
 
   ngOnChanges() {
-    this.fetchPhotos(this.item.title).subscribe(response => {
+    this.fetchPhotos(this.item.Title).subscribe(response => {
       this.photosData = response;
       console.log('PhotosData API Data',this.photosData);
       this.loopImages();

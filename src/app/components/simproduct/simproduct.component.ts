@@ -14,7 +14,7 @@ export class SimproductComponent {
 
   ngOnChanges(){
     console.log('Similar Products Component',this.product);
-    this.fetchSimilarProducts(this.product.itemId[0]).subscribe(response => {
+    this.fetchSimilarProducts(this.product.ItemID).subscribe(response => {
       this.similarProducts = response;
       console.log('Similar Products API Data',this.similarProducts);
     }); 

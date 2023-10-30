@@ -38,7 +38,6 @@ export class EbayFormComponent{
 
   ngDoCheck() {
     if (this.keywordField) {
-      console.log(this.keywordField.touched);
       if(this.keywordField.touched && this.keyword == ""){
         this.displayKeywordError = !this.validateKeyword(this.keyword);
       }

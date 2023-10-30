@@ -41,6 +41,10 @@ export class WishlistComponent {
   }
 
   getTotalPrice(): number {
-    return this.wishListData.reduce((total, item) => total + parseFloat(item.Price), 0);
+    let total = 0;
+    for (let item of this.wishListData) {
+      total += parseFloat(item.Price);
+    }
+    return parseFloat(total.toFixed(2));
   }
 }

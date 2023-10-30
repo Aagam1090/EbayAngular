@@ -97,6 +97,22 @@ export class ResultsComponent implements OnChanges {
     });
   }
 
+
+  getTitle(item: any): string {
+    const maxLength = 35;
+    if (item.title[0].length <= maxLength) {
+      return item.title;
+    }
+
+    const truncatedString = item.title[0].substring(0, maxLength);
+    const lastSpaceIndex = truncatedString.lastIndexOf(' ');
+    
+    if (lastSpaceIndex === -1) {
+      return truncatedString + '...';
+    }
+    return item.title[0].substring(0, lastSpaceIndex) + '...';
+  }
+
   getPaginatedItems(): any[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = Math.min(startIndex + this.itemsPerPage, this.item.data.length);

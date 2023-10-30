@@ -8,9 +8,6 @@
 }
 .title-column {
    width: 40%;
-   white-space: nowrap; 
-   overflow: hidden;
-   text-overflow: ellipsis; 
    padding-right: 15%;
 }
 

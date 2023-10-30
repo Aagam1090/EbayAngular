@@ -36,6 +36,25 @@ export class WishlistComponent {
     });
   }
 
+  getTitle(item: any): string {
+    const maxLength = 35;
+    if (item.length <= maxLength) {
+      return item.title;
+    }
+
+    const truncatedString = item.substring(0, maxLength);
+    const lastSpaceIndex = truncatedString.lastIndexOf(' ');
+    
+    if (lastSpaceIndex === -1) {
+      return truncatedString + '...';
+    }
+    return item.substring(0, lastSpaceIndex) + '...';
+  }
+
+  detail(response:any){
+    console.log("Clicked Detail");
+  }
+
   removeWishListData(id:any){
     return this.http.get('http://localhost:3000/wishlistdata/'+id);
   }

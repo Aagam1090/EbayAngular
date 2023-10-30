@@ -9,7 +9,11 @@ import { Component, Input } from '@angular/core';
 export class WishlistComponent {
 
   @Input() isWishlistClicked: boolean = false;
+  @Input() clearPressed: boolean = false;
   wishListData: any[] = [];
+  detailedItem:any = [];
+  detailedSelected : boolean = false;
+
 
   constructor(private http: HttpClient) { }
 
@@ -51,12 +55,15 @@ export class WishlistComponent {
     return item.substring(0, lastSpaceIndex) + '...';
   }
 
-  detail(response:any){
-    console.log("Clicked Detail");
-  }
 
   removeWishListData(id:any){
     return this.http.get('http://localhost:3000/wishlistdata/'+id);
+  }
+
+  detail(response:any){
+    console.log('Data Clicked for details', response);
+    this.detailedItem = response;
+    this.detailedSelected = true;
   }
 
   getTotalPrice(): number {

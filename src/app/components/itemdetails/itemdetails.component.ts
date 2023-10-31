@@ -94,11 +94,6 @@ export class ItemdetailsComponent{
       console.log("Removing item from wishlist");
 
       const params = new HttpParams()
-        .set('Image', this.getValue(data, ['galleryURL', '0']))
-        .set('Title', this.getValue(data, ['title', '0']))
-        .set('Price', this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']))
-        .set('ShippingInfo', this.getValue(data, ['shippingInfo', '0', 'shippingType', '0']))
-        .set('PostalCode', this.getValue(data, ['postalCode', '0']))
         .set('Url', this.getValue(data, ['viewItemURL', '0']));
     
       this.http.get('http://localhost:3000/deleteFromWishlist', { params, responseType: 'text'}).subscribe(

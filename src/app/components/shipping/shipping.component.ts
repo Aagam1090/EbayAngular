@@ -23,6 +23,15 @@ export class ShippingComponent {
     }
   }
 
+  getHandlingTime(){
+    if(this.item.shippingInfo[0].handlingTime <= 1){
+      return this.item.shippingInfo[0].handlingTime + " Day";
+    }
+    else{
+      return this.item.shippingInfo[0].handlingTime + " Days";
+    }
+  }
+
   getShippingIcon(value: boolean): string {
     return value 
       ? '<i class="fas fa-check"></i>'

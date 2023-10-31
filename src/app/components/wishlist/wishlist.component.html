@@ -50,4 +50,4 @@
         </tbody>
       </table>
 </div>
-<app-itemdetails *ngIf="detailedSelected" [clearPressed]="clearPressed" [singleItem] = "detailedItem"></app-itemdetails>
+<app-itemdetails *ngIf="detailedSelected" (updateView) = "changeVal($event)" [clearPressed]="clearPressed" [singleItem] = "detailedItem"></app-itemdetails>

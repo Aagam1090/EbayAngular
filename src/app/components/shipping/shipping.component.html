@@ -13,7 +13,7 @@
           </tr>
           <tr *ngIf="item.shippingInfo[0].handlingTime">
             <th scope="row">Handling Time</th>
-            <td>{{ item.shippingInfo[0].handlingTime }} Day</td>
+            <td>{{ getHandlingTime() }}</td>
           </tr>
           <tr *ngIf="item.shippingInfo[0].expeditedShipping !== undefined">
             <th scope="row">Expedited Shipping</th>

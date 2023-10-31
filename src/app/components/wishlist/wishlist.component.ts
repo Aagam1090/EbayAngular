@@ -80,6 +80,16 @@ export class WishlistComponent  implements OnChanges {
       this.detailedSelected = true;
     });
   }
+
+  changeVal(val:boolean){
+    this.fetchWishListData().subscribe((data: any) => {
+      this.wishListData = data;
+      console.log(this.wishListData);
+      console.log("Value changed");
+      this.detailedSelected = val;
+      console.log(this.detailedSelected);
+    }); 
+  }
   
 
   getTotalPrice(): number {

@@ -18,6 +18,12 @@ export class ItemdetailsComponent{
 
   constructor(private http: HttpClient){}
 
+  ngOnInit(){
+    if(this.singleItem.fromWishList == true){
+      this.singleItem.inWishlist = true;
+    }
+  }
+
   ngOnChanges() {
     console.log('ItemDetails',this.singleItem);
     this.fetchSingleItem(this.singleItem.itemId).subscribe(response => {

@@ -73,7 +73,10 @@ export class WishlistComponent  implements OnChanges {
   detail(response: any) {
     console.log(response.Id);
     this.fetchApiData(response.Id).subscribe((data: any) => {
-      this.detailedItem = data.data[0];
+      const tData = data.data[0];
+      tData.inWishlist  = true;
+      tData.fromWishList = true;
+      this.detailedItem = tData;
       this.detailedSelected = true;
     });
   }

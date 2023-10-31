@@ -9,7 +9,7 @@
                 <i class="bi bi-arrow-left"></i> List
             </button>
         </div>
-        <div class="col-8 d-flex justify-content-end align-items-center">
+        <div class="col-8 d-flex justify-content-end align-items-center" *ngIf="!clearPressed && this.singleItemData">
             <a href="https://www.facebook.com/sharer/sharer.php?u={{this.singleItemData.ViewItemURLForNaturalSearch}}&quote=Buy {{this.singleItemData.title}} at {{this.singleItemData.ConvertedCurrentPrice.Value}} from link below" target="_blank"><i class="fa-brands fa-square-facebook iconbox"></i></a>
             <button class="btn btn-light" (click)="onRowButtonClick(singleItem)">
                 <div class="d-flex align-items-center justify-content-center">

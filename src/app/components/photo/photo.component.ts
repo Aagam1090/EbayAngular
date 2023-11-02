@@ -10,6 +10,7 @@ export class PhotoComponent {
   
   @Input() item: any = [];
   photosData: any = [];
+  modifiedPhotosData: any[] = [];
   
   constructor(private http: HttpClient) { }
 
@@ -18,6 +19,10 @@ export class PhotoComponent {
       this.photosData = response;
       console.log('PhotosData API Data',this.photosData);
       this.loopImages();
+      this.modifiedPhotosData = [...this.photosData];
+      if (this.modifiedPhotosData.length > 6) {
+        this.modifiedPhotosData.splice(6, 0, null);
+      }
     }); 
   }
 

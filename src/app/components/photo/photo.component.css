@@ -1,14 +1,28 @@
-.container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2%;
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 1%;
 }
 
-.item {
-  border: 1px solid black;
-  display: flex;
+.column img {
+  margin-top: 12px;
+  border: black solid 8px;
 }
 
-.item img {
-  max-width: 100%;
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.img-thumbnail{
+  min-height: 100px;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+  
 }

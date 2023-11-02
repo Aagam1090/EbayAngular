@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, Input, OnChanges } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
+import * as LZString from 'lz-string';
 
 @Component({
   selector: 'app-itemdetails',
@@ -57,29 +58,48 @@ export class ItemdetailsComponent{
     return current;
   }
 
+  getShippingCost(item: any): string {
+    if (item && item.shippingInfo && item.shippingInfo[0] && item.shippingInfo[0].shippingServiceCost) {
+      const shippingCost = item.shippingInfo[0].shippingServiceCost[0].__value__;
+      if (shippingCost === "0.0") {
+        return "Free Shipping";
+      } else if (shippingCost) {
+        return `$${parseFloat(shippingCost).toFixed(2)}`;
+      }
+    }
+    return "N/A";
+  }
+
+  compressData(data: string): string {
+    const compressed = LZString.compressToEncodedURIComponent(data);
+    return compressed;
+  }
+
+
   onRowButtonClick(data: any) {
+    const price = this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']);
+    const formattedPrice = (parseFloat(price.toString()).toFixed(2)).toString();
     this.selectedData = {
+      Id : this.getValue(data, ['itemId', '0']),
       Image: this.getValue(data, ['galleryURL', '0']),
       Title: this.getValue(data, ['title', '0']),
-      Price: this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']),
-      ShippingInfo: this.getValue(data, ['shippingInfo', '0', 'shippingType', '0']),
+      Price: formattedPrice,
+      ShippingInfo: this.getShippingCost(data),
       PostalCode: this.getValue(data, ['postalCode', '0']),
-      Url: this.getValue(data, ['viewItemURL', '0'])
+      Url: this.getValue(data, ['viewItemURL', '0']),
+      itemData : data
     };
 
     data.inWishlist = !data.inWishlist;
     
     if(data.inWishlist == true){
       console.log(this.selectedData);
-  
-      const params = new URLSearchParams();
-      for (const key in this.selectedData) {
-        if (this.selectedData.hasOwnProperty(key)) {
-          params.set(key, this.selectedData[key]);
-        }
-      }
+
+      const stringJson = JSON.stringify(this.selectedData);
+      const compressed = this.compressData(stringJson);
       
-      const fullApiUrl = `${this.apiUrl}?${params.toString()}`;
+      const fullApiUrl = `${this.apiUrl}?data=${compressed}}`;
+  
   
       this.http.get(fullApiUrl).subscribe(
         response => {

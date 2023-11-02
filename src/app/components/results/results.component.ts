@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http'; 
 import { Router } from '@angular/router';
+import * as LZString from 'lz-string';
 
 @Component({
   selector: 'app-results',
@@ -154,6 +155,11 @@ export class ResultsComponent implements OnChanges {
     return "N/A";
   }
 
+  compressData(data: string): string {
+    const compressed = LZString.compressToEncodedURIComponent(data);
+    return compressed;
+  }
+
   onRowButtonClick(data: any) {
     const price = this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']);
     const formattedPrice = (parseFloat(price.toString()).toFixed(2)).toString();
@@ -165,22 +171,19 @@ export class ResultsComponent implements OnChanges {
       Price: formattedPrice,
       ShippingInfo: this.getShippingCost(data),
       PostalCode: this.getValue(data, ['postalCode', '0']),
-      Url: this.getValue(data, ['viewItemURL', '0'])
+      Url: this.getValue(data, ['viewItemURL', '0']),
+      itemData : data
     };
-
+    
     data.inWishlist = !data.inWishlist;
     
     if(data.inWishlist == true){
       console.log(this.selectedData);
-  
-      const params = new URLSearchParams();
-      for (const key in this.selectedData) {
-        if (this.selectedData.hasOwnProperty(key)) {
-          params.set(key, this.selectedData[key]);
-        }
-      }
+
+      const stringJson = JSON.stringify(this.selectedData);
+      const compressed = this.compressData(stringJson);
       
-      const fullApiUrl = `${this.apiUrl}?${params.toString()}`;
+      const fullApiUrl = `${this.apiUrl}?data=${compressed}}`;
   
       this.http.get(fullApiUrl).subscribe(
         response => {

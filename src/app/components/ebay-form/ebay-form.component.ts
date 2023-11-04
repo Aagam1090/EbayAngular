@@ -41,6 +41,9 @@ export class EbayFormComponent{
       if(this.keywordField.touched && this.keyword == ""){
         this.displayKeywordError = !this.validateKeyword(this.keyword);
       }
+      else if(this.keywordField.touched && this.keyword.trim() == "" && this.submitClicked == true){
+        this.displayKeywordError = true;
+      }
       else{
         this.displayKeywordError = false;
       }
@@ -48,18 +51,21 @@ export class EbayFormComponent{
   }
 
   ngAfterContentChecked() { 
-    if(this.keyword == "" || this.keyword == null || this.keyword == undefined || this.keyword.trim() == ""){
+    if(this.keyword || this.keyword == null || this.keyword == undefined){
       this.submitEnable = false;
     }
     if(this.location == "OtherLocation" && (this.zip == "" || this.zip == null || this.zip == undefined || this.zip.toString().trim() == "" || this.zip.toString().length != 5)){
       this.submitEnable = false;
     }
-    if(this.keyword != "" && this.keyword != null && this.keyword != undefined && this.keyword.trim() != ""){
-      if(this.location == "OtherLocation" && (this.zip == "" || this.zip == null || this.zip == undefined || this.zip.toString().trim() == "" || this.zip.toString().length != 5)){
-        this.submitEnable = false;
-      }
-      else{
-        this.submitEnable = true;
+    if(this.keyword != null && this.keyword != undefined){
+      if(this.keyword.length!=0)
+      {
+        if(this.location == "OtherLocation" && (this.zip == "" || this.zip == null || this.zip == undefined || this.zip.toString().trim() == "" || this.zip.toString().length != 5)){
+          this.submitEnable = false;
+        }
+        else{
+          this.submitEnable = true;
+        }
       }
     }
     if(this.location == "OtherLocation" && (this.zip == "" || this.zip == null || this.zip == undefined || this.zip.toString().trim() == "") ){
@@ -107,6 +113,7 @@ export class EbayFormComponent{
   }
 
   getData(form: NgForm): void {
+    this.submitClicked = true;
     this.displayKeywordError = !this.validateKeyword(form.value.keyword);
     this.displayLocationError = !this.validateLocation(form.value.location, form.value.zip);
     if(this.displayKeywordError || this.displayLocationError) {

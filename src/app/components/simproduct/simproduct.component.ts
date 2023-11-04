@@ -24,4 +24,12 @@ export class SimproductComponent {
     console.log('http://localhost:3000/similar?itemId='+id);
     return this.http.get('http://localhost:3000/similar?itemId='+id);
   }
+
+  getDaysLeft(product:any): string {
+    let timeLeft = product.timeLeft;
+    let startIndex = timeLeft.indexOf('P') + 1; 
+    let endIndex = timeLeft.indexOf('D');
+    let daysLeft = timeLeft.substring(startIndex, endIndex);
+    return daysLeft;
+  }
 }

@@ -1,7 +1,32 @@
-<div class="container" *ngIf="similarProducts && similarProducts.length == 0">
-  <div class="row justify-content-left">
-    <div class="col-12 col-md-12">
-      <div class="alert alert-warning text-left" role="alert">No Records.</div>
-    </div>
-  </div>
+<div *ngIf="similarProducts && similarProducts.length > 0">
+  <table
+    class="table table-dark rounded-table"
+    *ngFor="let product of similarProducts"
+  >
+    <tbody>
+      <tr class="border-bottom-0">
+        <td class="table-cell-custom">
+          <a [href]="product.imageURL" target="_blank">
+            <img
+              [src]="product.imageURL"
+              alt="Product image"
+              class="product-image"
+            />
+          </a>
+        </td>
+        <td>
+          <p class="product-title">
+            {{ product.title }}
+          </p>
+          <p class="product-price">
+            Price: ${{ product.buyItNowPrice.__value__ }}
+          </p>
+          <p class="product-shipping">
+            Shipping cost: ${{ product.shippingCost.__value__ }}
+          </p>
+          <p class="product-days-left">Days Left: {{ getDaysLeft(product) }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

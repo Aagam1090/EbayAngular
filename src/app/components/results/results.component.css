@@ -73,6 +73,10 @@ padding-right: 15%; */
 .golden-icon {
     color: goldenrod; 
   }
+
+  a{
+    text-decoration: none;
+  }
 @media (max-width: 428px) { 
     .result-table {
         overflow-x: auto;

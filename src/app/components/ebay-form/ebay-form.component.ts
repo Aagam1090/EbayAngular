@@ -38,7 +38,7 @@ export class EbayFormComponent{
 
   ngDoCheck() {
     if (this.keywordField) {
-      if(this.keywordField.touched && this.keyword == ""){
+      if(this.keywordField.touched && (this.keyword == "" || this.keyword == null || this.keyword == undefined)){
         this.displayKeywordError = !this.validateKeyword(this.keyword);
       }
       else if(this.keywordField.touched && this.keyword.trim() == "" && this.submitClicked == true){

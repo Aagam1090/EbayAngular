@@ -19,3 +19,8 @@ img {
 .carousel-control-prev-icon {
   background-color: black;
 }
+
+a{
+    color : cadetblue;
+    text-decoration : none;
+}

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { WishServiceService } from 'src/app/service/wish-service.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -13,9 +14,9 @@ export class WishlistComponent  implements OnChanges {
   wishListData: any[] = [];
   detailedItem:any = [];
   detailedSelected : boolean = false;
+  detailedButtonEnabled : boolean = false;
 
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private wishListService: WishServiceService) { }
 
   ngOnChanges(changes: SimpleChanges) {
     this.fetchWishListData().subscribe((data: any) => {
@@ -25,6 +26,10 @@ export class WishlistComponent  implements OnChanges {
     if(this.clearPressed == true){
       this.detailedItem = [];
       this.detailedSelected = false;
+    }
+    if(this.wishListService.getWishListData().length != 0){
+      this.detailedItem = this.wishListService.getWishListData();
+      this.detailedButtonEnabled = true;
     }
   }
 
@@ -72,6 +77,8 @@ export class WishlistComponent  implements OnChanges {
 
   detail(response: any) {
     console.log(response.Id);
+    this.wishListService.addToWishList(response);
+    this.detailedButtonEnabled = true;
     this.fetchApiData(response.Id).subscribe((data: any) => {
       const tData = data.data[0];
       tData.inWishlist  = true;
@@ -89,6 +96,20 @@ export class WishlistComponent  implements OnChanges {
       this.detailedSelected = val;
       console.log(this.detailedSelected);
     }); 
+  }
+
+  goToDetail(){
+    console.log('Go to details',this.wishListService.getWishListData());
+    if(this.wishListService.getWishListData().length != 0){
+      const mainItem = this.wishListService.getWishListData();
+      this.fetchApiData(mainItem.Id).subscribe((data: any) => {
+        const tData = data.data[0];
+        tData.inWishlist  = true;
+        tData.fromWishList = true;
+        this.detailedItem = tData;
+        this.detailedSelected = true;
+      });
+    }
   }
   
 

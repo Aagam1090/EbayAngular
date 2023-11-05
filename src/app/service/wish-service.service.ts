@@ -9,7 +9,7 @@ export class WishServiceService {
 
   addToWishList(data:any){
     this.wishListData =  data;
-    console.log("Data in Service",this.wishListData);
+    console.log("Data in WishList Service",this.wishListData);
   }
 
   getWishListData(){

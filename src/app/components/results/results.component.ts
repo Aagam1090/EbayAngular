@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import * as LZString from 'lz-string';
 import { WishServiceService } from 'src/app/service/wish-service.service';
+import { ResultServiceService } from 'src/app/service/result-service.service';
 
 @Component({
   selector: 'app-results',
@@ -19,6 +20,7 @@ export class ResultsComponent implements OnChanges {
   wishlistItems: any[] = [];
   detailedItem:any = [];
   detailedSelected : boolean = false;
+  detailedButtonEnabled : boolean = false;
 
   // Pagination properties
   itemsPerPage: number = 10;
@@ -26,7 +28,7 @@ export class ResultsComponent implements OnChanges {
   paginatedItems: any[] = [];
   totalPages: number = 0; 
 
-  constructor(private http: HttpClient, private router: Router,private wishlistService : WishServiceService) { }
+  constructor(private http: HttpClient, private router: Router,private resultService : ResultServiceService) { }
 
   ngOnChanges(changes: SimpleChanges){
     if(changes['item'] && this.item.data){
@@ -51,6 +53,10 @@ export class ResultsComponent implements OnChanges {
       this.detailedItem = [];
       this.detailedSelected = false;
     }
+    if(this.resultService.getResultsData().length != 0){
+      this.detailedItem = this.resultService.getResultsData();
+      this.detailedButtonEnabled = true;
+    }
   }
 
   changeVal(val:boolean){
@@ -61,8 +67,8 @@ export class ResultsComponent implements OnChanges {
   }
 
   goToDetail(){
-    if(this.wishlistService.getWishListData() != null){
-      this.detailedItem = this.wishlistService.getWishListData();
+    if(this.resultService.getResultsData().length != 0){
+      this.detailedItem = this.resultService.getResultsData();
       this.detailedSelected = true;
     }
   }
@@ -223,8 +229,9 @@ export class ResultsComponent implements OnChanges {
   }
   detail(response:any){
     console.log('Data Clicked for details', response);
-    this.wishlistService.addToWishList(response);
+    this.resultService.addToResults(response);
     this.detailedItem = response;
     this.detailedSelected = true;
+    this.detailedButtonEnabled = true;
   }
 }

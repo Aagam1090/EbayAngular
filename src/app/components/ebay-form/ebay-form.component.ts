@@ -4,6 +4,7 @@ import { NgForm, NgModel } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ResultServiceService } from 'src/app/service/result-service.service';
 
 @Component({
   selector: 'app-ebay-form',
@@ -34,7 +35,7 @@ export class EbayFormComponent{
   submitClicked: boolean = false;
   @ViewChild('keywordField') keywordField!: NgModel;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private resultService: ResultServiceService) { }
 
   ngDoCheck() {
     if (this.keywordField) {
@@ -180,11 +181,12 @@ export class EbayFormComponent{
       this.displayKeywordError = false;
       this.displayLocationError = false;
       this.submitEnable = false;
-      this.selectedCategory = "All Categories";
+      this.selectedCategory = "0";
       this.location = "CurrentLocation";
       this.ebayData = {};
       this.submitClicked = false;
       this.clearPressed=true;
+      this.resultService.clearResults();
     });
   }
 

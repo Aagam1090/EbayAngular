@@ -11,7 +11,7 @@
   </div>
 </div>
 <div class="button-wrapper" *ngIf="paginatedItems.length && !detailedSelected &&!clearPressed">
-  <button type="button" class="btn btn-light" (click)="goToDetail()" [disabled]="detailedItem.length == 0">
+  <button type="button" class="btn btn-light" (click)="goToDetail()" [disabled]="!detailedButtonEnabled">
     Detail <span class="ml-2">&rsaquo;</span>
   </button>
 </div>

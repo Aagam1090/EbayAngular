@@ -230,6 +230,10 @@ export class ResultsComponent implements OnChanges {
   detail(response:any){
     console.log('Data Clicked for details', response);
     this.resultService.addToResults(response);
+    this.paginatedItems.forEach(item => {
+      item.isHighlighted = false;
+    });
+    response.isHighlighted = true;
     this.detailedItem = response;
     this.detailedSelected = true;
     this.detailedButtonEnabled = true;

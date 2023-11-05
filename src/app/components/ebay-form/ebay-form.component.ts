@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 export class EbayFormComponent{
   
   keyword:string = '';
-  selectedCategory:string = "All Categories"
+  selectedCategory:string = "0"
   distance:number = 10;
   zip:any = "";
   currentLocation = "CurrentLocation";

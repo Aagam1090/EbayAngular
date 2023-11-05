@@ -10,9 +10,14 @@
     margin-left: 11%;
     width: 80%;
 }
-.nav-result{
+/* .nav-result{
     margin-left: 39%;
+} */
+.page-item:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
+
 .progress{
     width: 84%;
     margin-left: auto;
@@ -97,9 +102,9 @@ padding-right: 15%; */
         width: 80%; 
         height: 90%;
     }
-    .nav-result{
+    /* .nav-result{
         margin-left: 12%;
         width: 80%;
         margin-top: 5%;
-    }
+    } */
 } 

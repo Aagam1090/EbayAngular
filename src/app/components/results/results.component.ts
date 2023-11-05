@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http'; 
 import { Router } from '@angular/router';
 import * as LZString from 'lz-string';
+import { WishServiceService } from 'src/app/service/wish-service.service';
 
 @Component({
   selector: 'app-results',
@@ -25,7 +26,7 @@ export class ResultsComponent implements OnChanges {
   paginatedItems: any[] = [];
   totalPages: number = 0; 
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router,private wishlistService : WishServiceService) { }
 
   ngOnChanges(changes: SimpleChanges){
     if(changes['item'] && this.item.data){
@@ -60,7 +61,10 @@ export class ResultsComponent implements OnChanges {
   }
 
   goToDetail(){
-    this.detailedSelected = true;
+    if(this.wishlistService.getWishListData() != null){
+      this.detailedItem = this.wishlistService.getWishListData();
+      this.detailedSelected = true;
+    }
   }
 
   fetchWishlistItems() {
@@ -174,7 +178,7 @@ export class ResultsComponent implements OnChanges {
       Url: this.getValue(data, ['viewItemURL', '0']),
       itemData : data
     };
-    
+
     data.inWishlist = !data.inWishlist;
     
     if(data.inWishlist == true){
@@ -219,6 +223,7 @@ export class ResultsComponent implements OnChanges {
   }
   detail(response:any){
     console.log('Data Clicked for details', response);
+    this.wishlistService.addToWishList(response);
     this.detailedItem = response;
     this.detailedSelected = true;
   }

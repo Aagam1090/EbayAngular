@@ -12,7 +12,6 @@
 }
 .nav-result{
     margin-left: 39%;
-    width: 80%;
 }
 .progress{
     width: 84%;
@@ -101,5 +100,6 @@ padding-right: 15%; */
     .nav-result{
         margin-left: 12%;
         width: 80%;
+        margin-top: 5%;
     }
 } 

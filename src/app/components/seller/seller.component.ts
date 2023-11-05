@@ -16,58 +16,39 @@ export class SellerComponent {
     this.max=100;
   }
   getStarDetails(feedbackScore: number): { color: string, icon: string } {
-    console.log(feedbackScore);
-    let details = { color: '#000000', icon: 'star_border' }; // default values
-  
+    let details = { color: '#000000', icon: 'star_border' }; 
     if (feedbackScore >= 10000) {
-      details.icon = 'stars'; // use filled star for scores 10000 and above
+      details.icon = 'stars'; 
     }
-  
     if (feedbackScore <= 9) {
-      details.color = ''; // No color for score 0-9, and no icon should be displayed
+      details.color = ''; 
     } else if (feedbackScore <= 49) {
-      details.color = '#FFD700'; // Yellow Star
+      details.color = '#FFD700';
     } else if (feedbackScore <= 99) {
-      details.color = '#0000FF'; // Blue Star
+      details.color = '#0000FF'; 
     } else if (feedbackScore <= 499) {
-      details.color = '#40E0D0'; // Turquoise Star
+      details.color = '#40E0D0'; 
     } else if (feedbackScore <= 999) {
-      details.color = '#800080'; // Purple Star
+      details.color = '#800080'; 
     } else if (feedbackScore <= 4999) {
-      details.color = '#FF0000'; // Red Star
+      details.color = '#FF0000'; 
     } else if (feedbackScore <= 9999) {
-      details.color = '#008000'; // Green Star
+      details.color = '#008000'; 
     } else if (feedbackScore >= 10000) {
-      // For scores 10000 and above, already set the icon to 'star'
       if (feedbackScore <= 24999) {
-        details.color = '#FFD700'; // Yellow Shooting Star
+        details.color = '#FFD700'; 
       } else if (feedbackScore <= 49999) {
-        details.color = '#40E0D0'; // Turquoise Shooting Star
+        details.color = '#40E0D0'; 
       } else if (feedbackScore <= 99999) {
-        details.color = '#800080'; // Purple Shooting Star
+        details.color = '#800080'; 
       } else if (feedbackScore <= 499999) {
-        details.color = '#FF0000'; // Red Shooting Star 245790
+        details.color = '#FF0000'; 
       } else if (feedbackScore <= 999999) {
-        details.color = '#008000'; // Green Shooting Star
+        details.color = '#008000'; 
       } else {
-        details.color = '#C0C0C0'; // Silver Shooting Star
+        details.color = '#C0C0C0'; 
       }
     }
-    console.log(details);
     return details;
   }
-  
-  getOverlayStyle() {
-    const isSemi = false;
-    const transform = (isSemi ? '' : 'translateY(-50%) ') + 'translateX(-50%)';
-
-    return {
-      top: isSemi ? 'auto' : '50%',
-      bottom: isSemi ? '5%' : 'auto',
-      left: '50%',
-      transform,
-      fontSize: this.radius / 3.5 + 'px',
-    };
-  }
-  
 }

@@ -21,11 +21,11 @@
                   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                       <div *ngIf="productData?.PictureURL?.[0]" class="carousel-item active">
-                        <img [src]="productData.PictureURL[0]" class="d-block w-100" alt="...">
+                        <a [href]="productData.PictureURL[0]" target="_blank"><img [src]="productData.PictureURL[0]" class="d-block w-100" alt="Product Image"></a>
                       </div>
                       <ng-container *ngFor="let url of productData.PictureURL; let i = index">
                         <div class="carousel-item" *ngIf="i > 0">
-                          <img [src]="url" class="d-block w-100" alt="...">
+                         <a [href]="url" target="_blank"><img [src]="url" class="d-block w-100" alt="Product Image"></a>
                         </div>
                       </ng-container>
                     </div>

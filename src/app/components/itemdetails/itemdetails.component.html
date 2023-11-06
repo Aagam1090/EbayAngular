@@ -10,7 +10,9 @@
             </button>
         </div>
         <div class="col-8 d-flex justify-content-end align-items-center" *ngIf="!clearPressed && this.singleItemData">
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{this.singleItemData.ViewItemURLForNaturalSearch}}&quote=Buy {{this.singleItemData.title}} at {{this.singleItemData.ConvertedCurrentPrice.Value}} from link below" target="_blank"><i class="fa-brands fa-square-facebook iconbox"></i></a>
+          <div (click)="openFacebookDialog()" class="me-0">
+            <i class="fa-brands fa-square-facebook iconbox"></i>
+          </div>
             <button class="btn btn-light" (click)="onRowButtonClick(singleItem)">
                 <div class="d-flex align-items-center justify-content-center">
                   <span class="material-symbols-outlined" *ngIf="!singleItem.inWishlist">
@@ -26,11 +28,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-7 col-sm-0"></div>
-        <div class="col-md-5 col-sm-12 float-right">
+        <div class="col-sm-12 text-end">
             <button 
             [ngClass]="{'active-btn': isActive('Product'), 'inactive-btn': !isActive('Product')}"
-            class="btn" style="margin-left:13%" 
+            class="btn" 
             (click)="renderContent('Product')">Product</button>
           <button 
             [ngClass]="{'active-btn': isActive('Photo'), 'inactive-btn': !isActive('Photo')}"
@@ -44,7 +45,7 @@
           <button 
             [ngClass]="{'active-btn': isActive('Similar'), 'inactive-btn': !isActive('Similar')}"
             class="btn similar" (click)="renderContent('Similar')">Similar Products</button>
-            </div>
+        </div>
         <hr>
     </div>
 </div>

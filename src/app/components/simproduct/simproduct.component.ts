@@ -17,11 +17,11 @@ export class SimproductComponent {
   constructor(private http: HttpClient) {}
 
   ngDoCheck()	{
-    if(this.similarProductsCopy.length == 0 && this.similarProducts.length > 0){
+    if(this.similarProducts.length > 0 && this.similarProductsCopy.length == 0){
       this.similarProductsCopy = [...this.similarProducts];
       console.log('SimilarProductsCopy',this.similarProductsCopy);
     }
-    if(this.sortCriteria == 'Default' && this.similarProductsCopy.length > 0){
+    if(this.similarProductsCopy.length > 0 && this.sortCriteria == 'Default'){
       this.similarProducts = [...this.similarProductsCopy];
     }
   }

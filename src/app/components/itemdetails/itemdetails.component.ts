@@ -75,6 +75,13 @@ export class ItemdetailsComponent{
     return compressed;
   }
 
+  openFacebookDialog() {
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.singleItemData.ViewItemURLForNaturalSearch)}&quote=Buy ${encodeURIComponent(this.singleItemData.title)} at ${this.singleItemData.ConvertedCurrentPrice.Value} from link below`;
+    const windowFeatures = `fullscreen=yes, width=${window.screen.width}, height=${window.screen.height}, top=0, left=0`;
+  
+    window.open(url, 'Facebook Dialog', windowFeatures);
+  }
+
 
   onRowButtonClick(data: any) {
     const price = this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']);

@@ -1,110 +1,75 @@
-.container-fluid{
-    margin-top: 2%;
+.container-fluid {
+  margin-top: 2%;
 }
 
-.btn-group{
-    padding: auto;
+.btn-group {
+  padding: auto;
 }
 
-.result-table{
-    margin-left: 11%;
-    width: 80%;
+.result-table {
+  margin-left: 11%;
+  width: 80%;
 }
-/* .nav-result{
-    margin-left: 39%;
-} */
+
 .page-item:hover {
-    text-decoration: underline;
-    cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-.progress{
-    width: 84%;
-    margin-left: auto;
-    margin-right: auto;
+.progress {
+  width: 84%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .table {
-    width: 100%;     
-    table-layout: fixed; 
+  width: 100%;
+  table-layout: fixed;
 }
 .title-column {
-   width: 44%;
+  width: 44%;
 }
 
-/* white-space: nowrap; 
-overflow: hidden;
-text-overflow: ellipsis; 
-padding-right: 15%; */
-
-.number-column{
-    text-align: center;
-    width: 4%;
+.number-column {
+  text-align: center;
+  width: 4%;
 }
 
-.btn-light{
-    width: 69%;
-    height: 49px;
+.shipping {
+  padding-left: 0;
+  padding-right: 0;
+}
+.tblImg {
+  width: 125px;
+  height: 125px;
+  padding-left: 2%;
+  padding-bottom: 2%;
+  padding-right: 4%;
 }
 
-.shipping{
-    padding-left:0;
-    padding-right: 0;
+.image-header {
+  width: 150px;
 }
-.tblImg{
-    width: 125px;
-    height: 125px;
-    padding-left: 2%;
-    padding-bottom: 2%;
-    padding-right: 4%;
-}
-
-.image-header{
-    width: 150px;
-}
-.button-wrapper{
-    width: 8%;
-    display: flex;
-    float: right;
-    margin-right: 4%;
-    padding: 0px;
-    margin-bottom: 1%;
-}
-.button-wrapper button{
-    width: 70%;
-    height: 85%;
+.button-wrapper {
+  text-align: right;
 }
 .golden-icon {
-    color: goldenrod; 
+  color: goldenrod;
+}
+a {
+  text-decoration: none;
+}
+
+@media (max-width: 428px) {
+  .result-table {
+    overflow-x: auto;
+    margin-left: 6%;
+    width: 89%;
   }
 
-  a{
-    text-decoration: none;
+  .result-table .table {
+    width: 100%;
+    min-width: 1000px;
+    margin-bottom: 0;
   }
-@media (max-width: 428px) { 
-    .result-table {
-        overflow-x: auto;
-        margin-left: 6%;
-        width: 89%;
-    }
-    
-    .result-table .table {
-        width: 100%; 
-        min-width: 1000px; 
-        margin-bottom: 0;
-    }
-    .button-wrapper {
-        width: 28%; 
-        margin-right: 2%; 
-    }
-
-    .button-wrapper button {
-        width: 80%; 
-        height: 90%;
-    }
-    /* .nav-result{
-        margin-left: 12%;
-        width: 80%;
-        margin-top: 5%;
-    } */
-} 
+}

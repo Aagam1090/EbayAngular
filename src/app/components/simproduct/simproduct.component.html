@@ -16,16 +16,16 @@
 
   <table class="table table-dark rounded-table" *ngFor="let product of getDisplayedProducts()">
     <tbody>
-      <tr class="border-bottom-0">
-        <td class="table-cell-custom">
+      <tr>
+        <td class="table-cell-custom d-block d-sm-table-cell">
           <a [href]="product.imageURL" target="_blank">
             <img [src]="product.imageURL" alt="Product image" class="product-image"/>
           </a>
         </td>
-        <td>
-          <p class="product-title">
+        <td class="d-block d-sm-table-cell">
+          <a [href] ='product.viewItemURL' target="_blank"><p class="product-title">
             {{ product.title }}
-          </p>
+          </p></a>
           <p class="product-price">
             Price: ${{ product.buyItNowPrice.__value__ }}
           </p>

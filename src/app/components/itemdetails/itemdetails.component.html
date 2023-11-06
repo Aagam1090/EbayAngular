@@ -53,6 +53,6 @@
     <app-product [productData]= "singleItemData" *ngIf="activeContent === 'Product'"></app-product>
     <app-photo [item]="singleItemData" *ngIf="activeContent === 'Photo'" ></app-photo>
     <app-shipping [item]="singleItem" *ngIf="activeContent === 'Shipping'"></app-shipping>
-    <app-seller [item]="singleItemData" *ngIf="activeContent === 'Seller'"></app-seller>
+    <app-seller [item]="singleItemData" [advanceitem]="singleItem" *ngIf="activeContent === 'Seller'"></app-seller>
     <app-simproduct [product]="singleItemData" *ngIf="activeContent === 'Similar'"></app-simproduct>
 </div>

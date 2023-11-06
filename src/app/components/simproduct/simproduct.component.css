@@ -14,7 +14,6 @@
 .product-title {
   color: cadetblue;
   margin-bottom: 0;
-  margin-top: 2rem; 
 }
 
 .product-price {
@@ -32,3 +31,21 @@
   margin-bottom: 0;
 }
 
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .table-cell-custom {
+    width: 100%;
+  }
+  
+  .table td {
+    border: 0 !important;
+  }
+
+  .table th {
+    border: 0 !important;
+  }
+}

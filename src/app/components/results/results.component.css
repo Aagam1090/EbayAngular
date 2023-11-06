@@ -7,8 +7,12 @@
 }
 
 .result-table {
-  margin-left: 11%;
-  width: 80%;
+  /* margin-left: 11%; */
+  width: 100%;
+}
+
+.details-button {
+    padding-right: 0px;
 }
 
 .page-item:hover {
@@ -61,15 +65,19 @@ a {
 }
 
 @media (max-width: 428px) {
+   .details-button {
+    padding-right: 5%;
+   }
+
   .result-table {
     overflow-x: auto;
-    margin-left: 6%;
-    width: 89%;
+    /* margin-left: 6%;
+    width: 89%; */
   }
 
   .result-table .table {
     width: 100%;
     min-width: 1000px;
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
   }
 }

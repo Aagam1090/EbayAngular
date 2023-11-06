@@ -10,12 +10,14 @@
       </div>
   </div>
 </div>
+<div class="container result-table details-button">
+  <div class="mb-4 text-end" *ngIf="paginatedItems.length && !detailedSelected &&!clearPressed">
+    <button type="button" class="btn btn-light text-end" (click)="goToDetail()" [disabled]="!detailedButtonEnabled">
+      Detail <i class="fa-solid fa-angle-right"></i>
+    </button>
+  </div>
+</div>
 <div class="container result-table" *ngIf="paginatedItems.length && !detailedSelected">
-      <div class="mb-4 text-end" *ngIf="paginatedItems.length && !detailedSelected &&!clearPressed">
-        <button type="button" class="btn btn-light text-end" (click)="goToDetail()" [disabled]="!detailedButtonEnabled">
-          Detail <span class="ml-2">&rsaquo;</span>
-        </button>
-    </div>
     <table class="table table-dark table-striped table-hover" *ngIf="item.data && item.data.length">
         <thead>
           <tr>

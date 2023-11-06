@@ -7,6 +7,10 @@ import { Component, Input, SimpleChanges } from '@angular/core';
   styleUrls: ['./simproduct.component.css']
 })
 export class SimproductComponent {
+
+  // baseURL = 'http://localhost:3000';
+  baseURL = 'https://web-tech-asg-3.wl.r.appspot.com/';
+
   @Input() product: any;
   similarProducts: any = [];
   similarProductsCopy: any = [];
@@ -62,8 +66,8 @@ export class SimproductComponent {
   }
 
   fetchSimilarProducts(id:any){
-    console.log('http://localhost:3000/similar?itemId='+id);
-    return this.http.get('http://localhost:3000/similar?itemId='+id);
+    console.log(this.baseURL+'/similar?itemId='+id);
+    return this.http.get(this.baseURL+'/similar?itemId='+id);
   }
 
   getDaysLeft(product:any): number {

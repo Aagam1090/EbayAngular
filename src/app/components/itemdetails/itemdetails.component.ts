@@ -9,11 +9,15 @@ import * as LZString from 'lz-string';
   styleUrls: ['./itemdetails.component.css']
 })
 export class ItemdetailsComponent{
+
+  // baseURL = 'http://localhost:3000';
+  baseURL = 'https://web-tech-asg-3.wl.r.appspot.com/';
+
   @Input() singleItem: any = [];
   activeContent: string = 'Product'; 
   selectedData: any;
   @Output() updateView = new EventEmitter<boolean>();
-  apiUrl = 'http://localhost:3000/wishlist';
+  apiUrl = this.baseURL+'/wishlist';
   singleItemData: any;
   @Input() clearPressed: boolean = false;
 
@@ -34,7 +38,7 @@ export class ItemdetailsComponent{
   }
   
   fetchSingleItem(id:string){
-    return this.http.get('http://localhost:3000/singleItem?data='+id);
+    return this.http.get(this.baseURL+'/singleItem?data='+id);
   }
   backToResult(){
     console.log("Back to results Clikced");
@@ -123,7 +127,7 @@ export class ItemdetailsComponent{
       const params = new HttpParams()
         .set('Url', this.getValue(data, ['viewItemURL', '0']));
     
-      this.http.get('http://localhost:3000/deleteFromWishlist', { params, responseType: 'text'}).subscribe(
+      this.http.get(this.baseURL+'/deleteFromWishlist', { params, responseType: 'text'}).subscribe(
         response => {
           console.log('Item removed successfully', response);
         },

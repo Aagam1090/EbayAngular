@@ -25,8 +25,10 @@ export class EbayFormComponent{
   dataSubmitted = false;
   clearPressed :boolean = false;
   filteredZipcodes:string[] = [];
-  apiUrl = 'http://localhost:3000/api/ebay';
-  zipCodeUrl = 'http://localhost:3000/zip';
+  // apiUrl = 'http://localhost:3000/api/ebay';
+  // zipCodeUrl = 'http://localhost:3000/zip';
+  apiUrl = 'https://web-tech-asg-3.wl.r.appspot.com/api/ebay';
+  zipCodeUrl = 'https://web-tech-asg-3.wl.r.appspot.com/zip';
   ebayData = {};
   postalcode:string = "";
   disableZipCode :boolean = true;

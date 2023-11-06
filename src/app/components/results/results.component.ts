@@ -11,11 +11,15 @@ import { ResultServiceService } from 'src/app/service/result-service.service';
   styleUrls: ['./results.component.css']
 })
 export class ResultsComponent implements OnChanges {
+
+  // baseURL = 'http://localhost:3000';
+  baseURL = 'https://web-tech-asg-3.wl.r.appspot.com/';
+
   @Input() item: any = []; 
   @Input() isDataLoaded: boolean = false;
   @Input() clearPressed: boolean = false;
   selectedData: any;
-  apiUrl = 'http://localhost:3000/wishlist';
+  apiUrl = this.baseURL+'/wishlist';
   itemsInCart: any = {};
   wishlistItems: any[] = [];
   detailedItem:any = [];
@@ -74,7 +78,7 @@ export class ResultsComponent implements OnChanges {
   }
 
   fetchWishlistItems() {
-    this.http.get('http://localhost:3000/wishlistdata').subscribe(
+    this.http.get(this.baseURL+'/wishlistdata').subscribe(
       (data: any) => {
         this.wishlistItems = data;
         this.checkItemsInWishlist();
@@ -217,7 +221,7 @@ export class ResultsComponent implements OnChanges {
         .set('PostalCode', this.getValue(data, ['postalCode', '0']))
         .set('Url', this.getValue(data, ['viewItemURL', '0']));
     
-      this.http.get('http://localhost:3000/deleteFromWishlist', { params, responseType: 'text'}).subscribe(
+      this.http.get(this.baseURL+'/deleteFromWishlist', { params, responseType: 'text'}).subscribe(
         response => {
           console.log('Item removed successfully', response);
         },

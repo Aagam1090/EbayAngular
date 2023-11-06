@@ -7,6 +7,9 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./photo.component.css']
 })
 export class PhotoComponent {
+
+  // baseURL = 'http://localhost:3000';
+  baseURL = 'https://web-tech-asg-3.wl.r.appspot.com/';
   
   @Input() item: any = [];
   photosData: any = [];
@@ -26,6 +29,6 @@ export class PhotoComponent {
   }
 
   fetchPhotos(title:string){
-    return this.http.get('http://localhost:3000/photos?title='+title);
+    return this.http.get(this.baseURL+'/photos?title='+title);
   }
 }

@@ -9,6 +9,9 @@ import { WishServiceService } from 'src/app/service/wish-service.service';
 })
 export class WishlistComponent  implements OnChanges {
 
+  // baseURL = 'http://localhost:3000';
+  baseURL = 'https://web-tech-asg-3.wl.r.appspot.com/';
+
   @Input() isWishlistClicked: boolean = false;
   @Input() clearPressed: boolean = false;
   wishListData: any[] = [];
@@ -34,11 +37,11 @@ export class WishlistComponent  implements OnChanges {
   }
 
   fetchWishListData(){
-    return this.http.get('http://localhost:3000/wishlistdata');
+    return this.http.get(this.baseURL+'/wishlistdata');
   }
 
   fetchApiData(id:any){
-    const url = 'http://localhost:3000/ebayApiWish?id='+id;
+    const url = this.baseURL+'/ebayApiWish?id='+id;
     console.log(url);
     return this.http.get(url);
   }
@@ -72,7 +75,7 @@ export class WishlistComponent  implements OnChanges {
 
 
   removeWishListData(id:any){
-    return this.http.get('http://localhost:3000/wishlistdata/'+id);
+    return this.http.get(this.baseURL+'/wishlistdata/'+id);
   }
 
   detail(response: any) {

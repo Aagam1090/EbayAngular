@@ -133,4 +133,4 @@
 <br>
 
 <app-results [item]= "ebayData" [clearPressed]="clearPressed" [isDataLoaded] = "dataSubmitted" *ngIf="isResultsActive"></app-results>
-<app-wishlist [isWishlistClicked] = "!isResultsActive" [clearPressed]="clearPressed" *ngIf="!isResultsActive"></app-wishlist>
+<app-wishlist [isWishlistClicked] = "!isResultsActive" [clearPressed]="false" *ngIf="!isResultsActive"></app-wishlist>

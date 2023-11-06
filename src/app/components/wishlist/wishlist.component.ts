@@ -120,4 +120,18 @@ export class WishlistComponent  implements OnChanges {
     }
     return parseFloat(total.toFixed(2));
   }
+
+  checkIfEnable() :boolean{
+    const data =  this.wishListService.getWishListData();
+    if(data.length == 0 || data == null || data == undefined){
+      return this.detailedButtonEnabled;
+    }
+    for(let item of this.wishListData){
+      if(item.Id == data.Id){
+        if(this.detailedButtonEnabled == true)
+          return true;
+      }
+    }
+    return false;
+  }
 }

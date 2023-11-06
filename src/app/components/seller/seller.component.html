@@ -12,7 +12,24 @@
             </tr>
             <tr *ngIf="item.Seller?.PositiveFeedbackPercent">
                 <th scope="row">Popularity</th>
-                <td>{{ item.Seller.PositiveFeedbackPercent }}%</td>
+                <td>
+                    <div class="position-relative d-inline-flex justify-content-center align-items-center">
+                        <round-progress
+                            [current]="item.Seller.PositiveFeedbackPercent"
+                            [max]="100"
+                            [color]="'#008000'"
+                            [radius]="20"
+                            [stroke]="3"
+                            [semicircle]="false"
+                            [rounded]="true"
+                            [clockwise]="true"
+                            [responsive]="false">
+                        </round-progress>
+                        <span class="position-absolute">
+                            {{ item.Seller.PositiveFeedbackPercent }}
+                        </span>
+                    </div>
+                </td>
             </tr>
             <tr *ngIf="item.Seller?.FeedbackRatingStar">
                 <th scope="row">Feedback Rating Star</th>

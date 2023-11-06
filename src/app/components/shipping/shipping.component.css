@@ -7,3 +7,9 @@
 th{
     width: 65%;
 }
+
+@media screen and (max-width: 768px) {
+    th{
+        width: 100%;
+    }
+}

@@ -7,12 +7,12 @@
         </thead>
         <tbody>
             <tr *ngIf="item.Seller?.FeedbackScore">
-                <th scope="row">Feedback Score</th>
-                <td>{{ item.Seller.FeedbackScore }}</td>
+                <th scope="row" class="d-block d-sm-table-cell">Feedback Score</th>
+                <td class="d-block d-sm-table-cell">{{ item.Seller.FeedbackScore }}</td>
             </tr>
             <tr *ngIf="item.Seller?.PositiveFeedbackPercent">
-                <th scope="row">Popularity</th>
-                <td>
+                <th scope="row" class="d-block d-sm-table-cell">Popularity</th>
+                <td class="d-block d-sm-table-cell">
                     <div class="position-relative d-inline-flex justify-content-center align-items-center">
                         <round-progress
                             [current]="item.Seller.PositiveFeedbackPercent"
@@ -32,8 +32,8 @@
                 </td>
             </tr>
             <tr *ngIf="item.Seller?.FeedbackRatingStar">
-                <th scope="row">Feedback Rating Star</th>
-                <td>
+                <th scope="row" class="d-block d-sm-table-cell">Feedback Rating Star</th>
+                <td class="d-block d-sm-table-cell">
                     <ng-container *ngIf="item.Seller.FeedbackScore">
                         <ng-container *ngIf="getStarDetails(item.Seller.FeedbackScore).color">
                             <i class="material-icons"
@@ -45,19 +45,19 @@
                 </td>
               </tr>                           
             <tr *ngIf="item.Seller?.TopRatedSeller !== undefined">
-                <th scope="row">Top Rated</th>
-                <td>
+                <th scope="row" class="d-block d-sm-table-cell">Top Rated</th>
+                <td class="d-block d-sm-table-cell">
                     <i class="fa-solid" [ngClass]="item.Seller.TopRatedSeller ? 'fa-check' : 'fa-xmark'" 
                         [style.color]="item.Seller.TopRatedSeller ? 'green' : 'red'"></i>
                 </td>
             </tr>
             <tr *ngIf="item.Storefront?.StoreName">
-                <th scope="row">Store Name</th>
-                <td>{{ item.Storefront.StoreName }}</td>
+                <th scope="row" class="d-block d-sm-table-cell">Store Name</th>
+                <td class="d-block d-sm-table-cell">{{ item.Storefront.StoreName }}</td>
             </tr>
             <tr *ngIf="item.Storefront?.StoreURL">
-                <th scope="row">Buy Product At</th>
-                <td><a [href]="item.Storefront.StoreURL" target="_blank">Link to Store</a></td>
+                <th scope="row" class="d-block d-sm-table-cell">Buy Product At</th>
+                <td class="d-block d-sm-table-cell"><a [href]="item.Storefront.StoreURL" target="_blank">Link to Store</a></td>
             </tr>
         </tbody>
     </table>

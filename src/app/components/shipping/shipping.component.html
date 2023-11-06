@@ -2,36 +2,36 @@
     <table class="table table-striped table-dark" *ngIf="item.shippingInfo">
         <tbody>
             <tr *ngIf="item.shippingInfo[0].shippingServiceCost">
-                <th scope="row">Shipping Cost</th>
-                <td>
+                <th scope="row" class="d-block d-sm-table-cell">Shipping Cost</th>
+                <td class="d-block d-sm-table-cell">
                   {{ getShippingCost() }}
                 </td>
               </tr>
           <tr *ngIf="item.shippingInfo[0].shipToLocation">
-            <th scope="row">Shipping Locations</th>
-            <td>{{ item.shippingInfo[0].shipToLocation }}</td>
+            <th scope="row" class="d-block d-sm-table-cell">Shipping Locations</th>
+            <td class="d-block d-sm-table-cell">{{ item.shippingInfo[0].shipToLocation }}</td>
           </tr>
           <tr *ngIf="item.shippingInfo[0].handlingTime">
-            <th scope="row">Handling Time</th>
-            <td>{{ getHandlingTime() }}</td>
+            <th scope="row" class="d-block d-sm-table-cell">Handling Time</th>
+            <td class="d-block d-sm-table-cell">{{ getHandlingTime() }}</td>
           </tr>
           <tr *ngIf="item.shippingInfo[0].expeditedShipping !== undefined">
-            <th scope="row">Expedited Shipping</th>
-            <td>
+            <th scope="row" class="d-block d-sm-table-cell">Expedited Shipping</th>
+            <td class="d-block d-sm-table-cell">
                 <i class="fa-solid" [ngClass]="item.shippingInfo[0].expeditedShipping ? 'fa-check' : 'fa-xmark'" 
                     [style.color]="item.shippingInfo[0].expeditedShipping ? 'green' : 'red'"></i>
             </td>
           </tr>
           <tr *ngIf="item.shippingInfo[0].oneDayShippingAvailable !== undefined">
-            <th scope="row">One Day Shipping</th>
-            <td>
+            <th scope="row" class="d-block d-sm-table-cell">One Day Shipping</th>
+            <td class="d-block d-sm-table-cell">
                 <i class="fa-solid" [ngClass]="item.shippingInfo[0].oneDayShippingAvailable ? 'fa-check' : 'fa-xmark'" 
                     [style.color]="item.shippingInfo[0].oneDayShippingAvailable ? 'green' : 'red'"></i>
             </td>
           </tr>
           <tr *ngIf="item.returnsAccepted !== undefined">
-            <th scope="row">Return Accepted</th>
-            <td>
+            <th scope="row" class="d-block d-sm-table-cell">Return Accepted</th>
+            <td class="d-block d-sm-table-cell">
                 <i class="fa-solid" [ngClass]="item.returnsAccepted ? 'fa-check' : 'fa-xmark'" 
                     [style.color]="item.returnsAccepted ? 'green' : 'red'"></i>
             </td>

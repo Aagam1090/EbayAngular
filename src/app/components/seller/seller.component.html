@@ -6,11 +6,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngIf="item.Seller?.FeedbackScore">
+            <tr *ngIf="item.Seller?.FeedbackScore != -1">
                 <th scope="row" class="d-block d-sm-table-cell">Feedback Score</th>
                 <td class="d-block d-sm-table-cell">{{ item.Seller.FeedbackScore }}</td>
             </tr>
-            <tr *ngIf="item.Seller?.PositiveFeedbackPercent">
+            <tr *ngIf="item.Seller.PositiveFeedbackPercent != -1">
                 <th scope="row" class="d-block d-sm-table-cell">Popularity</th>
                 <td class="d-block d-sm-table-cell">
                     <div class="position-relative d-inline-flex justify-content-center align-items-center">
@@ -31,7 +31,7 @@
                     </div>
                 </td>
             </tr>
-            <tr *ngIf="item.Seller?.FeedbackRatingStar">
+            <tr *ngIf="item.Seller?.FeedbackRatingStar != 'None'">
                 <th scope="row" class="d-block d-sm-table-cell">Feedback Rating Star</th>
                 <td class="d-block d-sm-table-cell">
                     <ng-container *ngIf="item.Seller.FeedbackScore">
@@ -44,7 +44,7 @@
                     </ng-container>
                 </td>
               </tr>                           
-            <tr *ngIf="item.Seller?.TopRatedSeller !== undefined">
+            <tr *ngIf="item.Seller?.TopRatedSeller != undefined">
                 <th scope="row" class="d-block d-sm-table-cell">Top Rated</th>
                 <td class="d-block d-sm-table-cell">
                     <i class="fa-solid" [ngClass]="item.Seller.TopRatedSeller ? 'fa-check' : 'fa-xmark'" 

@@ -19,6 +19,7 @@ import { SellerComponent } from './components/seller/seller.component';
 import { SimproductComponent } from './components/simproduct/simproduct.component';
 import { MatIconModule } from '@angular/material/icon';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { RoundProgressModule } from 'angular-svg-round-progressbar';
     MatAutocompleteModule,
     NgxPaginationModule,
     MatIconModule,
-    RoundProgressModule
+    RoundProgressModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

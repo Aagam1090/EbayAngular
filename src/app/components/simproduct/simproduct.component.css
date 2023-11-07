@@ -42,10 +42,24 @@ a{
   }
   
   .table td {
-    border: 0 !important;
+    border-bottom: 6.5px solid #202327;
   }
 
   .table th {
     border: 0 !important;
+  }
+
+  #sortCriteria{
+    width: 100%;
+    display: block;
+  }
+
+  #sortOrder{
+    width: 100%;
+    display: block;
+  }
+
+  .sortContainer{
+    display: block !important;
   }
 }

@@ -31,7 +31,7 @@
           <tr *ngFor="let response of wishListData; let i = index">
             <th scope="row" class="number-column">{{ i + 1 }}</th>
             <td class="image-header"><img class="tblImg" [src]="response.Image" alt="Product Image"></td>
-            <td class="title-column"><a href="#" (click) = "detail(response);$event.preventDefault()">{{getTitle(response.Title)}}</a></td>
+            <td class="title-column"><a href="#" (click) = "detail(response);$event.preventDefault()" [matTooltip]="response.Title">{{getTitle(response.Title)}}</a></td>
             <td>${{response.Price}}</td>
             <td class="shipping">{{response.ShippingInfo}}</td>
             <td>{{response.PostalCode}}</td>

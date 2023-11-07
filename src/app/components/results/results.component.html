@@ -33,8 +33,8 @@
         <tbody>
           <tr *ngFor="let response of paginatedItems; let i = index" [class.table-secondary]="response.isHighlighted">
             <th scope="row" class="number-column">{{ (currentPage - 1) * itemsPerPage + i + 1 }}</th>
-            <td class="image-header"><a [href]="getValue(response, ['galleryURL', '0'])" target="_blank"><img  class="tblImg" [src]="getValue(response, ['galleryURL', '0'])" alt="Product Image"></a></td>
-            <td class="title-column" (click) = "detail(response);$event.preventDefault()" [title]="getValue(response, ['title', '0'])" ><a href="#">{{getTitle(response)}}</a></td>
+            <td class="image-header"><a [href]="getValue(response, ['galleryURL', '0'])" target="_blank"><img  class="tblImg" [src]="getValue(response, ['galleryURL', '0'])" alt="Product Image"></a></td>     
+            <td class="title-column" (click)="detail(response, $event)"><a href="#" [matTooltip]="response.title[0]">{{getTitle(response)}}</a></td>
             <td>${{ getValue(response, ['sellingStatus', '0', 'currentPrice', '0', '__value__']) | number:'1.2-2' }}</td>
             <td class="shipping">{{getShippingCost(response)}}</td>
             <td>{{getValue(response, ['postalCode', '0'])}}</td>

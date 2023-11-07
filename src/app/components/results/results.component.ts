@@ -144,7 +144,7 @@ export class ResultsComponent implements OnChanges {
     return Object.keys(obj).length === 0 && obj.constructor === Object;
   }
 
-  getValue(item: any, key: string[]): string | number {
+  getValue(item: any, key: string[]): any{
     let current = item;
     for (const k of key) {
       if (!current[k]) return "N/A";
@@ -231,7 +231,9 @@ export class ResultsComponent implements OnChanges {
       );
     }
   }
-  detail(response:any){
+  detail(response:any,event: Event){
+    event.preventDefault();
+    event.stopPropagation();
     console.log('Data Clicked for details', response);
     this.resultService.addToResults(response);
     this.paginatedItems.forEach(item => {

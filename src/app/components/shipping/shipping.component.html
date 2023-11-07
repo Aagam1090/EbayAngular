@@ -18,24 +18,27 @@
           <tr *ngIf="item.shippingInfo[0].expeditedShipping !== undefined">
             <th scope="row" class="d-block d-sm-table-cell">Expedited Shipping</th>
             <td class="d-block d-sm-table-cell">
-                <i class="fa-solid" [ngClass]="item.shippingInfo[0].expeditedShipping ? 'fa-check' : 'fa-xmark'" 
-                    [style.color]="item.shippingInfo[0].expeditedShipping ? 'green' : 'red'"></i>
+                <i class="fa-solid" 
+                   [ngClass]="item.shippingInfo[0].expeditedShipping == 'true' ? 'fa-check' : 'fa-xmark'" 
+                   [style.color]="item.shippingInfo[0].expeditedShipping == 'true' ? 'green' : 'red'"></i>
             </td>
           </tr>
           <tr *ngIf="item.shippingInfo[0].oneDayShippingAvailable !== undefined">
             <th scope="row" class="d-block d-sm-table-cell">One Day Shipping</th>
             <td class="d-block d-sm-table-cell">
-                <i class="fa-solid" [ngClass]="item.shippingInfo[0].oneDayShippingAvailable ? 'fa-check' : 'fa-xmark'" 
-                    [style.color]="item.shippingInfo[0].oneDayShippingAvailable ? 'green' : 'red'"></i>
+                <i class="fa-solid" 
+                   [ngClass]="item.shippingInfo[0].oneDayShippingAvailable == 'true' ? 'fa-check' : 'fa-xmark'" 
+                   [style.color]="item.shippingInfo[0].oneDayShippingAvailable == 'true' ? 'green' : 'red'"></i>
             </td>
           </tr>
           <tr *ngIf="item.returnsAccepted !== undefined">
             <th scope="row" class="d-block d-sm-table-cell">Return Accepted</th>
             <td class="d-block d-sm-table-cell">
-                <i class="fa-solid" [ngClass]="item.returnsAccepted ? 'fa-check' : 'fa-xmark'" 
-                    [style.color]="item.returnsAccepted ? 'green' : 'red'"></i>
+                <i class="fa-solid" 
+                   [ngClass]="item.returnsAccepted == 'true' ? 'fa-check' : 'fa-xmark'" 
+                   [style.color]="item.returnsAccepted == 'true' ? 'green' : 'red'"></i>
             </td>
-          </tr>         
+          </tr>
         </tbody>
       </table>
 </div>

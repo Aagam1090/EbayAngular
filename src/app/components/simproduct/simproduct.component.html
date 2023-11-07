@@ -1,5 +1,5 @@
 <div *ngIf="similarProducts && similarProducts.length > 0">
-  <div class="d-inline-flex mb-3 mt-3">
+  <div class="d-inline-flex mb-3 mt-3 sortContainer">
     <select [(ngModel)]="sortCriteria" (change)="sortingSimilarProducts()" id="sortCriteria" class="form-select me-3">
         <option value="Default">Default</option>
         <option value="Product Name">Product Name</option>

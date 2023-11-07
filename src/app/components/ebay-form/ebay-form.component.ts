@@ -41,7 +41,7 @@ export class EbayFormComponent{
 
   ngDoCheck() {
     if (this.keywordField) {
-      if(this.keywordField.touched && (this.keyword == "" || this.keyword == null || this.keyword == undefined)){
+      if(this.keywordField.touched && (this.keyword == "" || this.keyword == null || this.keyword == undefined || this.keyword.trim() == "")){
         this.displayKeywordError = !this.validateKeyword(this.keyword);
       }
       else if(this.keywordField.touched && this.keyword.trim() == "" && this.submitClicked == true){
@@ -54,14 +54,14 @@ export class EbayFormComponent{
   }
 
   ngAfterContentChecked() { 
-    if(this.keyword || this.keyword == null || this.keyword == undefined){
+    if(this.keyword || this.keyword == null || this.keyword == undefined || this.keyword.trim() == ""){
       this.submitEnable = false;
     }
     if(this.location == "OtherLocation" && (this.zip == "" || this.zip == null || this.zip == undefined || this.zip.toString().trim() == "" || this.zip.toString().length != 5)){
       this.submitEnable = false;
     }
     if(this.keyword != null && this.keyword != undefined){
-      if(this.keyword.length!=0)
+      if(this.keyword.length!=0 && this.keyword.trim()!= "")
       {
         if(this.location == "OtherLocation" && (this.zip == "" || this.zip == null || this.zip == undefined || this.zip.toString().trim() == "" || this.zip.toString().length != 5)){
           this.submitEnable = false;
@@ -124,6 +124,8 @@ export class EbayFormComponent{
     }
     
     console.log('Form data submitted: ', form.value);
+    form.value.keyword = form.value.keyword.trim();
+    console.log('Form data Updated submitted: ', form.value);
     this.submitClicked = true;
     this.isResultsActive = true;
     this.clearPressed = false;
@@ -159,7 +161,7 @@ export class EbayFormComponent{
         params = params.set(key, formValues[key]);
       }
     }
-    console.log('Form Values Passed as Params',params.toString());
+    console.log('Form Values Passed as Params',params);
     return this.http.get(this.apiUrl, { params });
   }
   

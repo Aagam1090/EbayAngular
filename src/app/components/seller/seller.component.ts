@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class SellerComponent {
   @Input() item:any;
   @Input() advanceitem:any;
+  title = "";
   current = 0;
   max = 0;
   color = '#008000';

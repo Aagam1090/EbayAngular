@@ -12,7 +12,7 @@ export class ItemdetailsComponent{
 
   // baseURL = 'http://localhost:3000';
   baseURL = 'https://web-tech-asg-3.wl.r.appspot.com/';
-
+  loadSingleData: boolean = false;
   @Input() singleItem: any = [];
   activeContent: string = 'Product'; 
   selectedData: any;
@@ -21,7 +21,9 @@ export class ItemdetailsComponent{
   singleItemData: any;
   @Input() clearPressed: boolean = false;
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient){
+    this.loadSingleData= true;
+  }
 
   ngOnInit(){
     if(this.singleItem.fromWishList == true){
@@ -30,10 +32,12 @@ export class ItemdetailsComponent{
   }
 
   ngOnChanges() {
+    this.loadSingleData= true;
     console.log('ItemDetails',this.singleItem);
     this.fetchSingleItem(this.singleItem.itemId).subscribe(response => {
       this.singleItemData = response;
       console.log('singleItemData API Data',this.singleItemData);
+      this.loadSingleData = false;
     });
   }
   

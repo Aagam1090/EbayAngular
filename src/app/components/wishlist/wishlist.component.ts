@@ -98,6 +98,14 @@ export class WishlistComponent  implements OnChanges {
       console.log("Value changed");
       this.detailedSelected = val;
       console.log(this.detailedSelected);
+      if(this.wishListService.getWishListData().length != 0){
+        this.detailedItem = this.wishListService.getWishListData();
+        for(let item of this.wishListData){
+          if(item.Id == this.detailedItem.Id){
+            item.isHighlighted = true;
+          }
+        }
+      }
     }); 
   }
 

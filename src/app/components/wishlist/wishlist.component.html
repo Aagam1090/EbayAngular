@@ -1,3 +1,10 @@
+<div class="container result-table details-button">
+  <div class="mb-4 text-end">
+    <button type="button" class="btn btn-light text-end" (click)="goToDetail()" [disabled]="!checkIfEnable()">
+      Detail <i class="fa-solid fa-angle-right"></i>
+    </button>
+  </div>
+</div>
 <div class="container"  *ngIf="wishListData && wishListData.length==0">
   <div class="row justify-content-left">
       <div class="col-12 col-md-12">
@@ -5,13 +12,6 @@
               No Records.
           </div>
       </div>
-  </div>
-</div>
-<div class="container result-table details-button">
-  <div class="mb-4 text-end" *ngIf="wishListData && wishListData.length!=0 && !detailedSelected">
-    <button type="button" class="btn btn-light text-end" (click)="goToDetail()" [disabled]="!checkIfEnable()">
-      Detail <i class="fa-solid fa-angle-right"></i>
-    </button>
   </div>
 </div>
 <div class="container result-table">
@@ -27,7 +27,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let response of wishListData; let i = index">
+          <tr *ngFor="let response of wishListData; let i = index"  [class.table-secondary]="response.isHighlighted">
             <th scope="row" class="number-column">{{ i + 1 }}</th>
             <td class="image-header">
               <a [href]="response.Image" target="_blank">

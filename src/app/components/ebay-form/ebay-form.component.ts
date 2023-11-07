@@ -191,6 +191,7 @@ export class EbayFormComponent{
       this.submitClicked = false;
       this.clearPressed=true;
       this.resultService.clearResults();
+      this.isResultsActive = true;
     });
   }
 

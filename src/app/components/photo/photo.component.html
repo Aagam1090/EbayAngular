@@ -53,6 +53,15 @@
   ChatGPT 4 with Image Search. version, OpenAI, 25 Oct. 2023, chat.openai.com/chat,
   
 -->
+<div class="container"  *ngIf="modifiedPhotosData && modifiedPhotosData.length==0 && photosLoaded">
+  <div class="row justify-content-left">
+      <div class="col-12 col-md-12">
+          <div class="alert alert-warning text-left" role="alert">
+              No Records.
+          </div>
+      </div>
+  </div>
+</div>
 <div class="row">
   <div class="column">
     <ng-container *ngFor="let photo of modifiedPhotosData; let i = index">

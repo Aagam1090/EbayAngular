@@ -14,12 +14,14 @@ export class PhotoComponent {
   @Input() item: any = [];
   photosData: any = [];
   modifiedPhotosData: any[] = [];
+  photosLoaded: boolean = false;
   
   constructor(private http: HttpClient) { }
 
   ngOnChanges() {
     this.fetchPhotos(this.item.Title).subscribe(response => {
       this.photosData = response;
+      this.photosLoaded = true;
       console.log('PhotosData API Data',this.photosData);
       if(this.photosData){
         this.modifiedPhotosData = [...this.photosData];

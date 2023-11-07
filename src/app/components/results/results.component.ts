@@ -152,7 +152,14 @@ export class ResultsComponent implements OnChanges {
     }
     return current;
   }
-
+  getImage(item: any): string {
+    if(item.galleryURL && item.galleryURL[0]!=""){
+      return item.galleryURL[0];
+    }
+    else{
+      return "https://m.media-amazon.com/images/I/81NvhGTVRlL.png";
+    }
+  }
   goToWishlist() {
     this.router.navigate(['/wishlist']);
   }

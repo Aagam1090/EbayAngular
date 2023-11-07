@@ -82,11 +82,14 @@ export class ItemdetailsComponent{
     const compressed = LZString.compressToEncodedURIComponent(data);
     return compressed;
   }
-
+/*
+  Share Content on Facebook using Facebook Dialog on Angular Project 
+  ChatGPT 4. version, OpenAI, 16 Oct. 2023, chat.openai.com/chat,
+  */
   openFacebookDialog() {
     const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.singleItemData.ViewItemURLForNaturalSearch)}&quote=Buy ${encodeURIComponent(this.singleItemData.title)} at ${this.singleItemData.ConvertedCurrentPrice.Value} from link below`;
     const windowFeatures = `fullscreen=yes, width=${window.screen.width}, height=${window.screen.height}, top=0, left=0`;
-  
+
     window.open(url, 'Facebook Dialog', windowFeatures);
   }
 

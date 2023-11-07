@@ -98,7 +98,6 @@ export class EbayFormComponent{
           this.zipData = response.postalCodes;
           this.filteredZipcodes = this.zipData.map((item: any) => item.postalCode);
         } else {
-          // Handle the case where postalCodes is not present or not an array, e.g., show an error message.
           console.error('postalCodes property not found or not an array:', response);
         }
       });

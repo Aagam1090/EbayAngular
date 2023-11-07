@@ -1,5 +1,5 @@
 <div class="container result-table details-button">
-  <div class="mb-4 text-end">
+  <div class="mb-4 text-end" *ngIf="!detailedSelected">
     <button type="button" class="btn btn-light text-end" (click)="goToDetail()" [disabled]="!checkIfEnable()">
       Detail <i class="fa-solid fa-angle-right"></i>
     </button>

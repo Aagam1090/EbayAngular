@@ -24,6 +24,14 @@ export class WishlistComponent  implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.fetchWishListData().subscribe((data: any) => {
       this.wishListData = data;
+      if(this.wishListService.getWishListData().length != 0){
+        this.detailedItem = this.wishListService.getWishListData();
+        for(let item of this.wishListData){
+          if(item.Id == this.detailedItem.Id){
+            item.isHighlighted = true;
+          }
+        }
+      }
       console.log(this.wishListData);
     });
     if(this.clearPressed == true){
@@ -53,6 +61,14 @@ export class WishlistComponent  implements OnChanges {
       console.log(data);
       this.fetchWishListData().subscribe((data: any) => {
         this.wishListData = data;
+        if(this.wishListService.getWishListData().length != 0){
+          this.detailedItem = this.wishListService.getWishListData();
+          for(let item of this.wishListData){
+            if(item.Id == this.detailedItem.Id){
+              item.isHighlighted = true;
+            }
+          }
+        }
         console.log(this.wishListData);
       });
     });

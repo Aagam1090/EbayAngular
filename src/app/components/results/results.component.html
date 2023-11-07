@@ -56,6 +56,9 @@
         </tbody>
       </table>
 </div> 
+<!--
+  Refered : https://getbootstrap.com/docs/5.3/components/pagination/#overview
+-->
 <nav class="nav-result" aria-label="Page navigation" *ngIf="item.data && item.data.length > itemsPerPage && !detailedSelected &&!clearPressed">
   <ul class="pagination justify-content-center">
     <li class="page-item" [class.disabled]="currentPage === 1">

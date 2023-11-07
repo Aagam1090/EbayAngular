@@ -13,6 +13,22 @@
             <tr *ngIf="item.Seller.PositiveFeedbackPercent != -1">
                 <th scope="row" class="d-block d-sm-table-cell">Popularity</th>
                 <td class="d-block d-sm-table-cell">
+                    <!-- 
+                        How to get the text inside the Angular Round Progress bar
+                        <round-progress
+                            [current]="item.Seller.PositiveFeedbackPercent"
+                            [max]="100"
+                            [color]="'#008000'"
+                            [radius]="20"
+                            [stroke]="3"
+                            [semicircle]="false"
+                            [rounded]="true"
+                            [clockwise]="true"
+                            [responsive]="false">
+                        </round-progress>
+                        Added Image of the HW  for reference to search in GPT 
+                        ChatGPT 4 with Image Search. version, OpenAI, 22 Oct. 2023, chat.openai.com/chat
+                    -->
                     <div class="position-relative d-inline-flex justify-content-center align-items-center">
                         <round-progress
                             [current]="item.Seller.PositiveFeedbackPercent"

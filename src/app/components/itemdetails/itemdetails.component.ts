@@ -86,6 +86,15 @@ export class ItemdetailsComponent{
     window.open(url, 'Facebook Dialog', windowFeatures);
   }
 
+  trimAfterVarQueryParam(data: any): string {
+    const varIndicator = '?var=';
+    const varIndex = data.indexOf(varIndicator);
+    if (varIndex !== -1) {
+      return data.substring(0, varIndex)+'?var=';
+    }
+    return data;
+  }
+
 
   onRowButtonClick(data: any) {
     const price = this.getValue(data, ['sellingStatus', '0', 'currentPrice', '0', '__value__']);
@@ -125,7 +134,7 @@ export class ItemdetailsComponent{
       console.log("Removing item from wishlist");
 
       const params = new HttpParams()
-        .set('Url', this.getValue(data, ['viewItemURL', '0']));
+        .set('Url', this.trimAfterVarQueryParam(this.getValue(data, ['viewItemURL', '0'])));
     
       this.http.get(this.baseURL+'/deleteFromWishlist', { params, responseType: 'text'}).subscribe(
         response => {

@@ -21,9 +21,11 @@ export class PhotoComponent {
     this.fetchPhotos(this.item.Title).subscribe(response => {
       this.photosData = response;
       console.log('PhotosData API Data',this.photosData);
-      this.modifiedPhotosData = [...this.photosData];
+      if(this.photosData){
+        this.modifiedPhotosData = [...this.photosData];
       if (this.modifiedPhotosData.length > 6) {
         this.modifiedPhotosData.splice(6, 0, null);
+        }
       }
     }); 
   }

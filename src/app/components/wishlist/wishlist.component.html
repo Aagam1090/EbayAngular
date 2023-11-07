@@ -22,9 +22,8 @@
             <th scope="col" class="image-header"><b>Image</b></th>
             <th scope="col" class="title-column"><b>Title</b></th>
             <th scope="col"><b>Price</b></th>
-            <th scope="col" class="shipping"><b>Shipping</b></th>
-            <th scope="col"><b>Zip</b></th>
-            <th scope="col"><b>Wishlist</b></th>
+            <th scope="col" class="shipping"><b>Shipping Option</b></th>
+            <th scope="col"><b>Favourite</b></th>
           </tr>
         </thead>
         <tbody>
@@ -34,7 +33,6 @@
             <td class="title-column"><a href="#" (click) = "detail(response);$event.preventDefault()" [matTooltip]="response.Title">{{getTitle(response.Title)}}</a></td>
             <td>${{response.Price}}</td>
             <td class="shipping">{{response.ShippingInfo}}</td>
-            <td>{{response.PostalCode}}</td>
             <td>
                 <button class="btn btn-light" (click)="removeWishList(response)">
                   <div class="d-flex align-items-center justify-content-center">
@@ -46,7 +44,8 @@
             </td>
         </tr>
         <tr>
-          <td colspan="6" class="text-right totalShopping"><b>Total Shopping</b></td>
+          <td colspan="4"></td>
+          <td class="totalShopping"><b>Total Shopping</b></td>
           <td><b>${{ getTotalPrice() }}</b></td>
         </tr>        
         </tbody>

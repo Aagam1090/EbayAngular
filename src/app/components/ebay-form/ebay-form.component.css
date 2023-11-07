@@ -17,6 +17,14 @@
   padding-bottom: 2%;
 }
 
+.category {
+  width: 89%;
+}
+
+#distance {
+  width: 89%;
+}
+
 .container-fluid {
   margin-top: 2%;
 }
@@ -61,8 +69,15 @@
   button {
     width: fit-content;
   }
+}
+
+@media only screen and (max-width: 576px) {
+
   .category {
-    width: 95%;
+    width: 100% !important;
+  }
+  #distance {
+    width: 100% !important;
   }
 }
 
